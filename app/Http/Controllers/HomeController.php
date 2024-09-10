@@ -83,7 +83,8 @@ class HomeController extends Controller
 
             Membership::create($validatedData);
 
-            Mail::to('mofaisal739@gmail.com')->send(new MembershipMail($validatedData));
+            Mail::to('arebfaraz@gmail.com')->send(new MembershipMail($validatedData));
+            // Mail::to('mofaisal739@gmail.com')->send(new MembershipMail($validatedData));
 
             return redirect()->route('home')->with('success', 'Thank you for contacting us! We will get back soon.');
         } else {
