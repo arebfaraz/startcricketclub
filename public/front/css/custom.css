@@ -1,0 +1,24 @@
+.navbar-brand {
+    height: 88px;
+}
+
+.navbar-brand img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.youtube-video {
+    width: 100vw;
+    height: 100vh;
+}
+
+.logo.slick-slide img {
+    height: 120px;
+}
+
+@media (max-width: 990px) {
+    .navbar-brand {
+        height: 58px;
+    }
+}
