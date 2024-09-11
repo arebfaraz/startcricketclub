@@ -19,9 +19,8 @@ class HomeController extends Controller
     public function index()
     {
         $data['teams'] = Team::where('active', 'Y')->get();
-        $data['players'] = Player::where('active', 'Y')->take(8)->get();
+        $data['players'] = Player::where('active', 'Y')->where('is_highlight', 'Y')->take(8)->get();
         $data['slider'] = Slider::latest()->first();
-
         // Get the current date and time
         $now = Carbon::now();
 
@@ -83,7 +82,7 @@ class HomeController extends Controller
 
             Membership::create($validatedData);
 
-            Mail::to('arebfaraz@gmail.com')->send(new MembershipMail($validatedData));
+            Mail::to('nirmaljit1983@gmail.com')->send(new MembershipMail($validatedData));
             // Mail::to('mofaisal739@gmail.com')->send(new MembershipMail($validatedData));
 
             return redirect()->route('home')->with('success', 'Thank you for contacting us! We will get back soon.');

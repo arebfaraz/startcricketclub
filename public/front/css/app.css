@@ -2288,7 +2288,7 @@ footer .footer-main .footer-info .input-group button {
 }
 .hero-banner-1::before {
     content: "";
-    background: url(../media/banner/hero-banner-bottom-vector.png);
+    background: url(../img/banner/hero-banner-bottom-vector.png);
     background-position: center bottom;
     background-repeat: no-repeat;
     position: absolute;
@@ -2524,7 +2524,7 @@ footer .footer-main .footer-info .input-group button {
     padding: 48px 32px;
     border-radius: 20px;
     overflow: hidden;
-    background: url(../media/match-result/bg-vector.png);
+    background: url(../img/match-result/bg-vector.png);
     background-size: cover;
     box-shadow: 1px 1px 4px 0px rgba(0, 33, 33, 0.06),
         5px 4px 7px 0px rgba(0, 33, 33, 0.05),
@@ -2827,7 +2827,7 @@ footer .footer-main .footer-info .input-group button {
         11px 10px 9px 0px rgba(0, 33, 33, 0.03),
         20px 18px 11px 0px rgba(0, 33, 33, 0.01),
         31px 28px 12px 0px rgba(0, 33, 33, 0);
-    background: url(../media/match-result/bg-vector.png);
+    background: url(../img/match-result/bg-vector.png);
     background-size: cover;
     overflow: hidden;
 }
@@ -3158,7 +3158,7 @@ footer .footer-main .footer-info .input-group button {
     }
 }
 .join .content::before {
-    content: url(../media/vector/arrow.png);
+    content: url(../img/vector/arrow.png);
     width: 162px;
     height: 32px;
     position: absolute;
@@ -3198,7 +3198,7 @@ footer .footer-main .footer-info .input-group button {
 }
 .team .team-member .content::before {
     content: "";
-    background: url(../media/vector/bg-vector.png);
+    background: url(../img/vector/bg-vector.png);
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;

@@ -77,12 +77,14 @@
             <div class="brands-logo">
                 @foreach ($teams as $team)
                     <div class="logo">
-                        <img src="{{ asset('storage/team_logos/' . $team->logo) }}" alt>
+                        <img class="shadow-sm p-3 mb-5 bg-body rounded"
+                            src="{{ asset('storage/team_logos/' . $team->logo) }}" alt>
                     </div>
                 @endforeach
                 @foreach ($teams as $team)
                     <div class="logo">
-                        <img src="{{ asset('storage/team_logos/' . $team->logo) }}" alt>
+                        <img class="shadow-sm p-3 mb-5 bg-body rounded"
+                            src="{{ asset('storage/team_logos/' . $team->logo) }}" alt>
                     </div>
                 @endforeach
 
@@ -100,11 +102,9 @@
                 <div class="heading">
                     <div class="left">
                         <h2 class="light-black">Last Match Result</h2>
-                        {{-- <p class="light-black">Lorem ipsum dolor sit
-                            amet consectetur. Quis <br>
-                            aliquam cursus blandit nulla vitae. Eu
-                            imperdiet.
-                        </p> --}}
+                        <p class="light-black">Our vision is to elevate cricket in Cambodia from schools, <br>
+                            colleges, and local levels to the international stage.
+                        </p>
                     </div>
                     <a href="#" class="cus-btn primary">See All
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
@@ -207,17 +207,22 @@
                 <div class="row">
                     <div class="col-xl-6 offset-xl-6">
                         <div class="p-40">
-                            <h3 class="light-black mb-24">The Cricket Pulse
+                            <h3 class="light-black mb-24">Star Cricket Club
                                 Story, Beyond the Boundary</h3>
-                            <p class="dark-gray mb-16">We are Cricket Lovers Cambodia having first dedicated and fully
-                                equipped Cricket Ground in Phnom Penh, Cambodia. Our vision is to promote Cricket in
-                                Cambodia from school, colleges, university and local sectors level to International cricket
-                                level. We will promote expats & Cambodian new young talents. </p>
-                            <p class="dark-gray mb-32">we offer to everyone who’s the
-                                really Cricket lovers can be join us very easy method with complete your contribution
-                                registration form with 15$ monthly as active member and enjoy proper cricket in Phnom Penh
-                                Cambodia. looking forward.</p>
-                            <a href="#" class="cus-btn primary">Read More
+                            <ul class="list-group mb-4">
+                                <li class="list-group-item">
+                                    *We are officially registered with the Cricket Federation of Cambodia and proudly
+                                    operate the first dedicated and fully equipped cricket ground in Phnom Penh. Our vision
+                                    is to advance cricket in Cambodia from schools, colleges, and universities to the
+                                    international stage. We aim to support and develop both expatriate and local young
+                                    talent. </li>
+                                <li class="list-group-item">*Register with us to play every weekend.</li>
+                                <li class="list-group-item">*Our Cambodian players also have the opportunity to join the
+                                    national team.</li>
+                                <li class="list-group-item">*Become a member of Star Cricket Club. Click below to join
+                                </li>
+                            </ul>
+                            <a href="/membership" class="cus-btn primary">Join now
                                 <i class="fal fa-chevron-right"></i>
                             </a>
                         </div>
@@ -257,10 +262,9 @@
                     <div class="heading">
                         <div class="left">
                             <h2 class="light-black">Upcoming Match List</h2>
-                            {{-- <p class="light-black">Lorem ipsum dolor sit
-                            amet consectetur. Quis <br> aliquam cursus
-                            blandit nulla vitae. Eu imperdiet.
-                        </p> --}}
+                            <p class="light-black">Our vision is to elevate cricket in Cambodia from schools, <br>
+                                colleges, and local levels to the international stage.
+                            </p>
                         </div>
                         <a href="#" class="cus-btn primary">See All
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
@@ -360,10 +364,9 @@
                 <div class="heading">
                     <div class="left">
                         <h2 class="light-black">Our Latest Gallery</h2>
-                        {{-- <p class="light-black">Lorem ipsum dolor sit
-                            amet consectetur. Quis <br> aliquam cursus
-                            blandit nulla vitae. Eu imperdiet.
-                        </p> --}}
+                        <p class="light-black">Our vision is to elevate cricket in Cambodia from schools, <br>
+                            colleges, and local levels to the international stage.
+                        </p>
                     </div>
                     <a href="#" class="cus-btn primary">See All
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
@@ -425,10 +428,9 @@
                         <div class="content">
                             <h2 class="color-white text-xl-center">Ready to
                                 Play? Join Now!</h2>
-                            {{-- <h5 class="color-white text-xl-center">Lorem
-                                ipsum dolor sit amet consectetur. Amet
-                                duis ultrices sed turpis. Eget tincidunt
-                                est odio nibh ut eu rhoncus.</h5> --}}
+                            <h5 class="color-white text-xl-center">ur vision is to elevate cricket in Cambodia from
+                                schools,
+                                colleges, and local levels to the international stage.</h5>
                             <a href="{{ route('membership') }}" class="cus-btn sec">Join Now
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none">
@@ -450,11 +452,10 @@
                 <div class="container">
                     <div class="heading">
                         <div class="left">
-                            <h2 class="light-black">Meet Our Team</h2>
-                            {{-- <p class="light-black">Lorem ipsum dolor sit
-                            amet consectetur. Quis <br> aliquam cursus
-                            blandit nulla vitae. Eu imperdiet.
-                        </p> --}}
+                            <h2 class="light-black">Meet Our Player</h2>
+                            <p class="light-black">Our vision is to elevate cricket in Cambodia from schools, <br>
+                                colleges, and local levels to the international stage.
+                            </p>
                         </div>
                         <a href="#" class="cus-btn primary">See All
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
@@ -491,7 +492,7 @@
                                     </div>
 
                                     <img src="{{ asset('storage/player_images/' . $player->image) }}"
-                                        onerror="this.onerror=null; this.src='{{ asset('front/img/man-avatar.png') }}';">
+                                        onerror="this.onerror=null; this.src='{{ asset('front/img/12.avif') }}';">
                                 </div>
                             </a>
                         @endforeach
@@ -612,12 +613,12 @@
                                 <div class="date-author mb-12">
                                     <div class="date">
                                         <h4 class="light-black">12</h4>
-                                        <h6 class="light-black">October, 2023</h6>
+                                        <h6 class="light-black">September, 2024</h6>
                                     </div>
                                     <div class="author">
                                         <div class="text">
                                             <h6 class="">
-                                                Noah Smith
+                                                CLC Team
                                             </h6>
                                         </div>
                                         <img src="{{ asset('front/img/blog/author.png') }}" alt="">
@@ -655,12 +656,12 @@
                                 <div class="date-author mb-12">
                                     <div class="date">
                                         <h4 class="light-black">12</h4>
-                                        <h6 class="light-black">October, 2023</h6>
+                                        <h6 class="light-black">September, 2024</h6>
                                     </div>
                                     <div class="author">
                                         <div class="text">
                                             <h6 class="">
-                                                Noah Smith
+                                                CLC Team
                                             </h6>
                                         </div>
                                         <img src="{{ asset('front/img/blog/author.png') }}" alt="">
@@ -696,12 +697,12 @@
                                 <div class="date-author mb-12">
                                     <div class="date">
                                         <h4 class="light-black">12</h4>
-                                        <h6 class="light-black">October, 2023</h6>
+                                        <h6 class="light-black">September, 2024</h6>
                                     </div>
                                     <div class="author">
                                         <div class="text">
                                             <h6 class="">
-                                                Noah Smith
+                                                CLC Team
                                             </h6>
                                         </div>
                                         <img src="{{ asset('front/img/blog/author.png') }}" alt="">
@@ -737,12 +738,12 @@
                                 <div class="date-author mb-12">
                                     <div class="date">
                                         <h4 class="light-black">12</h4>
-                                        <h6 class="light-black">October, 2023</h6>
+                                        <h6 class="light-black">September, 2024</h6>
                                     </div>
                                     <div class="author">
                                         <div class="text">
                                             <h6 class="">
-                                                Noah Smith
+                                                CLC Team
                                             </h6>
                                         </div>
                                         <img src="{{ asset('front/img/blog/author.png') }}" alt="">

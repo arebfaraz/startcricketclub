@@ -12,9 +12,14 @@
     width: 100vw;
     height: 100vh;
 }
+video {
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+}
 
 .logo.slick-slide img {
-    height: 120px;
+    height: 220px;
 }
 
 @media (max-width: 990px) {

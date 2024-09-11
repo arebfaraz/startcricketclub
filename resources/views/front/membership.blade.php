@@ -160,7 +160,7 @@
                                                 Phnom Penh
                                             </option>
                                             <option value="Seim Reap" {{ old('city') == 'Seim Reap' ? 'selected' : '' }}>
-                                                Seim Reap
+                                                Siem Reap
                                             </option>
                                             <option value="Battambong" {{ old('city') == 'Battambong' ? 'selected' : '' }}>
                                                 Battambong

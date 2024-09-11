@@ -79,7 +79,7 @@
                             {{-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/EzDC8aAJln0"
                                 id="video"></iframe> --}}
 
-                            <video src="{{ asset('front/img/clc-video.mp4') }}" controls></video>
+                            <video src="{{ asset('front/img/clc-video.mp4') }}" controls autoplay muted></video>
                         </div>
                     </div>
                 </div>

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->enum('type', ['1', '2', '3'])->comment('1 => Captain, 2 => Vice Captain, 3 => Player')->nullable();
             $table->string('player_type')->nullable();
+            $table->enum('is_highlight', ['Y', 'N'])->default('N')->nullable();
             $table->enum('active', ['Y', 'N'])->default('Y')->nullable();
             $table->softDeletes();
             $table->timestamps();
