@@ -48,6 +48,12 @@
                         <p>Upcoming Match</p>
                     </a>
                 </li>
+                <li class="nav-item {{ Request::routeIs('match-result.*') ? 'active' : '' }}">
+                    <a href="{{ route('match-result.index') }}">
+                        <i class="fas fa-trophy"></i>
+                        <p>Match Result</p>
+                    </a>
+                </li>
                 <li class="nav-item {{ Request::routeIs('slider.*') ? 'active' : '' }}">
                     <a href="{{ route('slider.index') }}">
                         <i class="fas fa-sliders-h"></i>

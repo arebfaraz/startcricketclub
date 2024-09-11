@@ -122,31 +122,38 @@
                     </a>
                 </div>
                 <div class="result-slider">
-                    <div class="result-block">
-                        <div class="item">
-                            <div class="teams">
-                                <div class="team">
-                                    <div class="team-logo-name">
-                                        <img src="{{ asset('front/img/brands/southafrica_cricket_logo.png') }}" alt>
-                                        <h5 class="light-black">SA
-                                            Cricket</h5>
+                    @foreach ($results as $result)
+                        <div class="result-block">
+                            <div class="item">
+                                <div class="teams">
+                                    <div class="team">
+                                        <div class="team-logo-name">
+                                            <img src="{{ asset('storage/team_logos/' . $result->team_1->logo) }}" alt>
+                                            <h5 class="light-black">{{ @$result->team_1->name }}</h5>
+                                        </div>
+                                        <h5 class="light-black">{{ $result->team_1_score . '/' . $result->team_1_wicket }}
+                                            <span class="dark-gray">({{ $result->team_1_over }})</span>
+                                        </h5>
                                     </div>
-                                    <h5 class="light-black">270 <span class="dark-gray">(48)</span></h5>
-                                </div>
-                                <div class="team">
-                                    <h5 class="light-black">271/3 <span class="dark-gray">(39)</span></h5>
-                                    <div class="team-logo-name">
-                                        <img src="{{ asset('front/img/brands/action_cricket_logo.png') }}" alt>
-                                        <h5 class="light-black">Action
-                                            Cricket</h5>
+                                    <div class="team">
+                                        <h5 class="light-black">{{ $result->team_2_score . '/' . $result->team_2_wicket }}
+                                            <span class="dark-gray">({{ $result->team_2_over }})</span>
+                                        </h5>
+                                        <div class="team-logo-name">
+                                            <img src="{{ asset('storage/team_logos/' . $result->team_2->logo) }}" alt>
+                                            <h5 class="light-black">{{ @$result->team_2->name }}</h5>
+                                        </div>
                                     </div>
                                 </div>
+                                <h5 class="text-center dark-gray">
+                                    {{ @$result->won_team->name . ' won by ' . $result->won_by_no }}
+                                    {{ $result->won_by == '1' ? 'Run' : 'Wicket' }}
+                                </h5>
                             </div>
-                            <h5 class="text-center dark-gray">Action
-                                Cricket won by 7 wickets (63 balls left)</h5>
                         </div>
-                    </div>
-                    <div class="result-block">
+                    @endforeach
+
+                    {{-- <div class="result-block">
                         <div class="item">
 
                             <div class="teams">
@@ -191,7 +198,7 @@
                             <h5 class="text-center dark-gray">Action
                                 Cricket won by 4 wickets (48 balls left)</h5>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </section>

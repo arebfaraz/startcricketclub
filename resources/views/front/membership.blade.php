@@ -46,38 +46,40 @@
                                         </div>
                                     @endif
                                 </div>
-                                <div class="col-12">
-                                    <div class="inputGroup white-bg mb-4 file">
-                                        <input type="file" name="photo" id="photo" accept="image/*">
+
+                                <div class="col-md-12">
+                                    <div class="form-group mb-4 text-dark @error('photo') has-error  @enderror">
                                         <label for="photo">Upload Photo<span class="text-danger">*</span></label>
+                                        <input type="file" name="photo" class="form-control " id="photo">
                                         @error('photo')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="inputGroup white-bg mb-4">
-                                        <input type="text" name="player_name" id="player_name"
-                                            value="{{ old('player_name') }}" autocomplete="off">
+                                <div class="col-md-12">
+                                    <div class="form-group mb-4 text-dark @error('player_name') has-error  @enderror">
                                         <label for="player_name">Player Name<span class="text-danger">*</span></label>
+                                        <input type="text" name="player_name" class="form-control " id="player_name"
+                                            placeholder="Enter Player Name" value="{{ old('player_name') }}">
                                         @error('player_name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="inputGroup white-bg mb-4">
-                                        <input type="text" name="nationality" id="nationality"
-                                            value="{{ old('nationality') }}" autocomplete="off">
+                                <div class="col-md-12">
+                                    <div class="form-group mb-4 text-dark @error('nationality') has-error  @enderror">
                                         <label for="nationality">Nationality<span class="text-danger">*</span></label>
+                                        <input type="text" name="nationality" class="form-control " id="nationality"
+                                            placeholder="Enter Nationality" value="{{ old('nationality') }}">
                                         @error('nationality')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="inputGroup white-bg mb-4 select">
-                                        <select name="status" id="status">
+                                <div class="col-md-12">
+                                    <div class="form-group mb-4 text-dark @error('status') has-error  @enderror">
+                                        <label for="status">Status In Cambodia<span class="text-danger">*</span></label>
+                                        <select name="status" class="form-control text-dark" id="status">
                                             <option value="">Select</option>
                                             <option value="Buisness Visa"
                                                 {{ old('status') == 'Buisness Visa' ? 'selected' : '' }}>Buisness
@@ -89,25 +91,26 @@
                                                 Other
                                             </option>
                                         </select>
-                                        <label for="status">Status In Cambodia<span class="text-danger">*</span></label>
                                         @error('status')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="inputGroup white-bg mb-4">
-                                        <input type="text" id="phone" name="phone" value="{{ old('phone') }}"
-                                            autocomplete="off">
+                                <div class="col-md-12">
+                                    <div class="form-group mb-4 text-dark @error('phone') has-error  @enderror">
                                         <label for="phone">Phone<span class="text-danger">*</span></label>
+                                        <input type="text" name="phone" class="form-control " id="phone"
+                                            placeholder="Enter Phone" value="{{ old('phone') }}"
+                                            onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                                         @error('phone')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="inputGroup white-bg mb-4 select">
-                                        <select name="player_type" id="player_type">
+                                <div class="col-md-12">
+                                    <div class="form-group mb-4 text-dark @error('player_type') has-error  @enderror">
+                                        <label for="player_type">Player Types<span class="text-danger">*</span></label>
+                                        <select name="player_type" class="form-control text-dark" id="player_type">
                                             <option value="">Select</option>
                                             <option value="Right Hand Bowler"
                                                 {{ old('player_type') == 'Right Hand Bowler' ? 'selected' : '' }}>Right
@@ -146,23 +149,27 @@
                                                 Other
                                             </option>
                                         </select>
-                                        <label for="player_type">Player Types<span class="text-danger">*</span></label>
                                         @error('player_type')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="inputGroup white-bg mb-4 select">
-                                        <select name="city" id="city">
+
+                                <div class="col-md-12">
+                                    <div class="form-group mb-4 text-dark @error('city') has-error  @enderror">
+                                        <label for="city">Where Do You Live Currently<span
+                                                class="text-danger">*</span></label>
+                                        <select name="city" class="form-control text-dark" id="city">
                                             <option value="">Select</option>
-                                            <option value="Phnom Penh" {{ old('city') == 'Phnom Penh' ? 'selected' : '' }}>
+                                            <option value="Phnom Penh"
+                                                {{ old('city') == 'Phnom Penh' ? 'selected' : '' }}>
                                                 Phnom Penh
                                             </option>
                                             <option value="Seim Reap" {{ old('city') == 'Seim Reap' ? 'selected' : '' }}>
                                                 Siem Reap
                                             </option>
-                                            <option value="Battambong" {{ old('city') == 'Battambong' ? 'selected' : '' }}>
+                                            <option value="Battambong"
+                                                {{ old('city') == 'Battambong' ? 'selected' : '' }}>
                                                 Battambong
                                             </option>
                                             <option value="Sihanoukville"
@@ -173,26 +180,27 @@
                                                 Other
                                             </option>
                                         </select>
-                                        <label for="email">Where Do You Live Currently<span
-                                                class="text-danger">*</span></label>
                                         @error('city')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="inputGroup white-bg mb-4">
-                                        <input type="text" id="jersey_name" name="jersey_name"
-                                            value="{{ old('jersey_name') }}" autocomplete="off">
+
+                                <div class="col-md-12">
+                                    <div class="form-group mb-4 text-dark @error('jersey_name') has-error  @enderror">
                                         <label for="jersey_name">Jersey Name<span class="text-danger">*</span></label>
+                                        <input type="text" name="jersey_name" class="form-control " id="jersey_name"
+                                            placeholder="Enter Jersey Name" value="{{ old('jersey_name') }}">
                                         @error('jersey_name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="inputGroup white-bg mb-4 select">
-                                        <select name="jersey_size" id="jersey_size">
+
+                                <div class="col-md-12">
+                                    <div class="form-group mb-4 text-dark @error('jersey_size') has-error  @enderror">
+                                        <label for="jersey_size">Jersey Size<span class="text-danger">*</span></label>
+                                        <select name="jersey_size" class="form-control text-dark" id="jersey_size">
                                             <option value="">Select</option>
                                             <option value="S" {{ old('jersey_size') == 'S' ? 'selected' : '' }}>
                                                 S
@@ -211,34 +219,37 @@
                                                 XXL
                                             </option>
                                         </select>
-                                        <label for="email">Jersey Size<span class="text-danger">*</span></label>
                                         @error('jersey_size')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
 
-                                <div class="col-12">
-                                    <div class="inputGroup white-bg mb-4">
-                                        <input type="text" id="jersey_number" name="jersey_number"
-                                            value="{{ old('jersey_number') }}" autocomplete="off">
+                                <div class="col-md-12">
+                                    <div class="form-group mb-4 text-dark @error('jersey_number') has-error  @enderror">
                                         <label for="jersey_number">Jersey Number<span class="text-danger">*</span></label>
+                                        <input type="text" name="jersey_number" class="form-control "
+                                            id="jersey_number" placeholder="Enter Jersey Number"
+                                            value="{{ old('jersey_number') }}"
+                                            onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                                         @error('jersey_number')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
+                                        <div class="text-danger jersey_no_err"></div>
                                     </div>
                                 </div>
+
                                 <div class="col-12">
-                                    <div class="d-flex text-dark gap-3 white-bg mb-4">
+                                    <div class="d-flex text-dark gap-3 white-bg">
                                         <input type="checkbox" id="is_agree" name="is_agree" value="1"
                                             {{ old('is_agree') == '1' ? 'checked' : '' }} required>
                                         <label for="is_agree">I agree to the Terms and Conditions</label>
-                                        @error('is_agree')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
                                     </div>
+                                    @error('is_agree')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                <div class="col-12 mb-4">
+                                <div class="col-12 my-4">
                                     <button type="button" class="btn btn-dark pay-now">Pay Now</button>
                                 </div>
                                 <div class="d-none" id="payment-div">
@@ -247,12 +258,13 @@
                                         <img src="{{ asset('front/img/qr_code.jpg') }}" width="300" alt="">
                                     </div>
 
-                                    <div class="col-12">
-                                        <div class="inputGroup white-bg mb-4 file">
-                                            <input type="file" name="payment_screenshot" id="payment_screenshot"
-                                                accept="image/*">
-                                            <label for="payment_screenshot">Upload Payment Screenshot<span
-                                                    class="text-danger">*</span></label>
+
+                                    <div class="col-md-12">
+                                        <div
+                                            class="form-group mb-4 text-dark @error('payment_screenshot') has-error  @enderror">
+                                            <label for="payment_screenshot">Upload Payment Screenshot</label>
+                                            <input type="file" name="payment_screenshot" class="form-control "
+                                                id="payment_screenshot">
                                             @error('payment_screenshot')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -265,19 +277,16 @@
 
 
                                     <img id="your-selector" src="{{ $builder->inline() }}" class="" />
-                                    <i class="fas fa-sync-alt cursor-pointer fs-1 ml-2 text-dark"
+                                    <i class="fas fa-sync-alt cursor-pointer fs-2 ml-2 text-dark"
                                         id="captcha-refresh"></i>
-
-
                                 </div>
                                 <div class="row mt-3">
 
-
                                     <div class="col-md-6">
-                                        <div class="inputGroup white-bg mb-4">
-                                            <input type="text" id="g-recaptcha-response" name="captcha_code"
-                                                value="{{ old('captcha_code') }}" autocomplete="off">
+                                        <div class="form-group mb-4 text-dark">
                                             <label for="captcha_code">Captcha<span class="text-danger">*</span></label>
+                                            <input type="text" id="g-recaptcha-response" name="captcha_code"
+                                                class="form-control " id="captcha_code" placeholder="Enter Captcha">
                                             @error('captcha_code')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -302,6 +311,8 @@
 
 @push('script')
     <script>
+        var jersey_nos = @json($jersey_nos);
+
         $(document).ready(function() {
             $(".pay-now").on("click", function() {
                 $("#payment-div").removeClass("d-none");
@@ -311,6 +322,16 @@
                 $(this).text('Sending...').attr('disabled', true)
                 $("#membership-form").submit()
             })
+
+            $("#jersey_number").on("keyup", function() {
+                var no = $(this).val();
+
+                if (jersey_nos.includes(no)) {
+                    $(".jersey_no_err").text("Jersey number already taken");
+                } else {
+                    $(".jersey_no_err").text('');
+                }
+            });
 
             $("#captcha-refresh").click(function() {
 

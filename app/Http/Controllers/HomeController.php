@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\MembershipMail;
+use App\Models\MatchResult;
 use App\Models\Membership;
 use App\Models\Player;
 use App\Models\Slider;
@@ -21,6 +22,7 @@ class HomeController extends Controller
         $data['teams'] = Team::where('active', 'Y')->get();
         $data['players'] = Player::where('active', 'Y')->where('is_highlight', 'Y')->take(8)->get();
         $data['slider'] = Slider::latest()->first();
+        $data['results'] = MatchResult::latest()->take('6')->get();
         // Get the current date and time
         $now = Carbon::now();
 

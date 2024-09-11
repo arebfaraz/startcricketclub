@@ -1426,7 +1426,7 @@ Elements
     position: relative;
     margin-bottom: 0;
     color: #000;
-    border: 0;
+    border: 1px solid #000;
     border-radius: 15px;
 }
 .form-control:focus {

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\MatchResultController;
 use App\Http\Controllers\Admin\PlayerController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TeamController;
@@ -63,4 +64,5 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('slider', SliderController::class);
     Route::post('save-stream', [SliderController::class, 'saveStream'])->name('saveStream');
     Route::resource('upcoming-match', UpcomingMatchController::class);
+    Route::resource('match-result', MatchResultController::class);
 });
