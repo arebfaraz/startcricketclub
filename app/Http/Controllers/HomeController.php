@@ -35,7 +35,8 @@ class HomeController extends Controller
 
     public function membership()
     {
-        return view('front.membership');
+        $jersey_nos = Membership::pluck('jersey_number')->toArray();
+        return view('front.membership', compact('jersey_nos'));
     }
 
     public function membershipStore(Request $request)
@@ -54,9 +55,11 @@ class HomeController extends Controller
                 'photo' => 'required|file',
                 'payment_screenshot' => 'nullable|file',
                 'is_agree' => 'required',
+                'captcha_code' => 'required',
             ],
             [
                 'is_agree.required' => 'Please check',
+                'captcha_code.required' => 'Captcha is required',
                 'jersey_number.unique' => 'The jersey number already taken',
             ]
         );

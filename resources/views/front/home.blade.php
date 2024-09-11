@@ -37,8 +37,7 @@
                                 <div class="overlay d-md-inline-block" data-bs-toggle="modal" data-bs-target="#videoModal">
                                     <a href="#"
                                         class="play-button fw-600
-                                            fs-25"
-                                        data-src="https://www.youtube.com/embed/EzDC8aAJln0">
+                                            fs-25">
                                         <div class="icon"><i class="fas fa-play"></i></div>
                                         Watch Video
                                     </a>

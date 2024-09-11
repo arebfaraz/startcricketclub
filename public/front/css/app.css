@@ -1425,12 +1425,12 @@ Elements
     font-weight: 400;
     position: relative;
     margin-bottom: 0;
-    color: #f8f8ff;
+    color: #000;
     border: 0;
     border-radius: 15px;
 }
 .form-control:focus {
-    color: #f8f8ff;
+    color: #000;
     outline: 0;
     box-shadow: none;
     border: none;

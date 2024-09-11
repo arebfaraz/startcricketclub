@@ -27,3 +27,12 @@ video {
         height: 58px;
     }
 }
+
+#videoModal {
+    z-index: 9999;
+}
+
+.btn-block {
+    position: relative;
+    z-index: 9999;
+}
