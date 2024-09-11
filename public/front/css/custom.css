@@ -34,5 +34,48 @@ video {
 
 .btn-block {
     position: relative;
-    z-index: 9999;
+    z-index: 9;
+}
+
+.fixed-top img.logo {
+    max-width: 200px;
+    transform: translateY(-40px);
+}
+
+header {
+    transition: all 0.3s ease-in-out 0s;
+    animation: 0.3s slideout;
+}
+
+@keyframes slideout {
+    0% {
+        top: 0px;
+    }
+
+    100% {
+        top: -110px;
+    }
+}
+
+header.fixed-top {
+    background: rgba(13, 136, 136, 0.75);
+    transition: all 0.3s ease-in-out 0s;
+    animation: 0.3s slidein;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+header.small-screen.fixed-top {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+@keyframes slidein {
+    0% {
+        top: -110px;
+    }
+
+    100% {
+        top: 0%;
+    }
 }

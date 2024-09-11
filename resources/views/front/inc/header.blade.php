@@ -1,4 +1,4 @@
-<header class="large-screens">
+<header class="large-screens" id="navbar_top">
     <div class="container">
         <nav class="navbar navbar-expand-lg p-0">
             <div class="collapse navbar-collapse" id="mynavbar">
@@ -41,7 +41,7 @@
                         <button class="search" type="submit"><i class="far fa-search search-icon"></i></button>
                     </form> --}}
 
-                    <a href="{{ route('membership') }}" class="cus-btn primary">Join Membership
+                    <a href="{{ route('membership') }}" class="cus-btn sec">Join Membership
 
                     </a>
 
@@ -51,7 +51,7 @@
     </div>
 </header>
 
-<header class="small-screen">
+<header class="small-screen" id="navbar_top_small">
     <div class="container-fluid">
         <div class="mobile-menu">
             <div>
