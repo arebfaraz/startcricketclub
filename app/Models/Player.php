@@ -10,7 +10,7 @@ class Player extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'image', 'email', 'phone', 'type', 'player_type', 'team_id', 'active'];
+    protected $fillable = ['sr_no', 'name', 'image', 'email', 'phone', 'type', 'player_type', 'team_id', 'active'];
 
     public function team()
     {

@@ -42,6 +42,12 @@
                         <p>Players</p>
                     </a>
                 </li>
+                {{-- <li class="nav-item {{ Request::routeIs('membership.*') ? 'active' : '' }}">
+                    <a href="{{ route('membership.index') }}">
+                        <i class="fas fa-users"></i>
+                        <p>Membership</p>
+                    </a>
+                </li> --}}
                 <li class="nav-item {{ Request::routeIs('upcoming-match.*') ? 'active' : '' }}">
                     <a href="{{ route('upcoming-match.index') }}">
                         <i class="fas fa-baseball-ball"></i>

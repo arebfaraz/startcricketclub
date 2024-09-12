@@ -36,6 +36,7 @@
                         <table id="basic-datatables" class="display table table-striped table-hover">
                             <thead>
                                 <tr>
+                                    <th>Sr. No.</th>
                                     <th>Name</th>
                                     <th>Team</th>
                                     <th>Image</th>
@@ -49,6 +50,7 @@
                             <tbody>
                                 @forelse ($players as $player)
                                     <tr>
+                                        <td>{{ $player->sr_no }}</td>
                                         <td>{{ $player->name }}</td>
                                         <td>{{ $player->team->name }}</td>
                                         <td>
@@ -56,7 +58,7 @@
                                                 <img class="avatar-img rounded-circle"
                                                     src="{{ asset('storage/player_images/' . $player->image) }}"
                                                     alt=""
-                                                    onerror="this.onerror=null; this.src='{{ asset('front/img/man-avatar.png') }}';">
+                                                    onerror="this.onerror=null; this.src='{{ asset('front/img/12.avif') }}';">
                                             </div>
                                         </td>
                                         <td>{{ $player->type == '1' ? 'Captain' : ($player->type == '2' ? 'Vice Captain' : 'Player') }}
@@ -83,7 +85,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7">No Player Found</td>
+                                        <td colspan="8">No Player Found</td>
                                     </tr>
                                 @endforelse
 

@@ -50,12 +50,15 @@
                                 <div class="col-md-12">
                                     <div class="form-group mb-4 text-dark @error('photo') has-error  @enderror">
                                         <label for="photo">Upload Photo<span class="text-danger">*</span></label>
-                                        <input type="file" name="photo" class="form-control " id="photo">
+                                        <input type="file" name="photo" class="form-control image" id="photo"
+                                            data-id="#photoPreview">
                                         @error('photo')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="row" id="photoPreview"></div>
+
                                 <div class="col-md-12">
                                     <div class="form-group mb-4 text-dark @error('player_name') has-error  @enderror">
                                         <label for="player_name">Player Name<span class="text-danger">*</span></label>
@@ -69,8 +72,15 @@
                                 <div class="col-md-12">
                                     <div class="form-group mb-4 text-dark @error('nationality') has-error  @enderror">
                                         <label for="nationality">Nationality<span class="text-danger">*</span></label>
-                                        <input type="text" name="nationality" class="form-control " id="nationality"
-                                            placeholder="Enter Nationality" value="{{ old('nationality') }}">
+                                        <select name="nationality" id="nationality" class="form-control text-dark ">
+                                            <option value="">Select</option>
+                                            @foreach ($countries as $country)
+                                                <option value="{{ $country['name'] }}"
+                                                    {{ old('nationality') == $country['name'] ? 'selected' : '' }}>
+                                                    {{ $country['name'] }}</option>
+                                            @endforeach
+                                        </select>
+
                                         @error('nationality')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -103,6 +113,16 @@
                                             placeholder="Enter Phone" value="{{ old('phone') }}"
                                             onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                                         @error('phone')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group mb-4 text-dark @error('email') has-error  @enderror">
+                                        <label for="email">Email<span class="text-danger">*</span></label>
+                                        <input type="email" name="email" class="form-control " id="email"
+                                            placeholder="Enter Email" value="{{ old('email') }}">
+                                        @error('email')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -263,13 +283,14 @@
                                         <div
                                             class="form-group mb-4 text-dark @error('payment_screenshot') has-error  @enderror">
                                             <label for="payment_screenshot">Upload Payment Screenshot</label>
-                                            <input type="file" name="payment_screenshot" class="form-control "
-                                                id="payment_screenshot">
+                                            <input type="file" name="payment_screenshot" class="form-control image"
+                                                id="payment_screenshot" data-id="#paymentPreview">
                                             @error('payment_screenshot')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="row" id="paymentPreview"></div>
 
 
                                 </div>
@@ -314,6 +335,7 @@
         var jersey_nos = @json($jersey_nos);
 
         $(document).ready(function() {
+
             $(".pay-now").on("click", function() {
                 $("#payment-div").removeClass("d-none");
             })
@@ -349,6 +371,28 @@
                 })
             });
 
+            $(".image").on("change", function() {
+                var id = $(this).data('id');
+                $(id).empty(); // Clear previous previews
+
+                var files = this.files; // Get the selected files
+
+                if (files.length > 0) {
+                    $.each(files, function(i, file) {
+                        var reader = new FileReader();
+
+                        reader.onload = function(e) {
+                            $(id).append(`
+                        <div class="col-auto mb-4">
+                            <img src="${e.target.result}" class="img-fluid img-thumbnail" width="100" height="150" alt="Image Preview">
+                        </div>
+                    `);
+                        };
+
+                        reader.readAsDataURL(file); // Read the file as a data URL
+                    });
+                }
+            });
         });
     </script>
 @endpush

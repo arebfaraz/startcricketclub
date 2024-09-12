@@ -15,6 +15,25 @@ class PlayerController extends Controller
     public function index()
     {
         $players = Player::all();
+        $no = 1; // Initialize as an integer
+
+        foreach ($players as $key => $player) {
+            if (!$player->sr_no) {
+                $date = now()->format('ymd'); // Use Laravel's now() helper
+                // Ensure $no has leading zeros and a length of 3 digits
+                $serialNumber = 'CLC' . $date . str_pad($no, 3, '0', STR_PAD_LEFT);
+
+                // Optional: Ensure unique sr_no
+                while (Player::where('sr_no', $serialNumber)->exists()) {
+                    $no++;
+                    $serialNumber = 'CLC' . $date . str_pad($no, 3, '0', STR_PAD_LEFT);
+                }
+
+                $player->sr_no = $serialNumber;
+                $player->save();
+            }
+            $no++;
+        }
         return view('backend.player.index', compact('players'));
     }
 
@@ -49,6 +68,45 @@ class PlayerController extends Controller
             $image->storeAs('player_images', $imageName, 'public');
             $validatedData['image'] = $imageName;
         }
+
+        // Step 1: Retrieve the last player's sr_no if it exists
+        $lastPlayer = Player::orderBy('id', 'desc')->first();
+        $currentDate = now()->format('ymd');  // Format the current date as ymd (e.g., 240912 for September 12, 2024)
+
+        if ($lastPlayer && $lastPlayer->sr_no) {
+            // Step 2: Extract the date part from the last sr_no
+            $lastSrNo = $lastPlayer->sr_no;
+            $lastDatePart = substr($lastSrNo, 3, 6);  // Extract the 6 digits after "CLC"
+            $lastNumberPart = substr($lastSrNo, -3);  // Extract the last 3 digits
+
+            if ($lastDatePart === $currentDate) {
+                // If the date matches, increment the last 3 digits
+                $newNumberPart = str_pad(((int) $lastNumberPart + 1), 3, '0', STR_PAD_LEFT);
+            } else {
+                // If the date doesn't match, start with 001
+                $newNumberPart = '001';
+            }
+        } else {
+            // If no previous sr_no exists, start from scratch
+            $newNumberPart = '001';
+        }
+
+        // Step 3: Use do-while loop to ensure the sr_no is unique
+        do {
+            $newSrNo = 'CLC' . $currentDate . $newNumberPart;
+
+            // Check if the sr_no already exists
+            $existingSrNo = Player::where('sr_no', $newSrNo)->exists();
+
+            if ($existingSrNo) {
+                // If it exists, increment the last 3 digits and pad to ensure it's 3 digits long
+                $newNumberPart = str_pad(((int) $newNumberPart + 1), 3, '0', STR_PAD_LEFT);
+            }
+        } while ($existingSrNo);  // Repeat until a unique sr_no is found
+
+        // Step 4: Assign the generated sr_no to validated data
+        $validatedData['sr_no'] = $newSrNo;
+
 
         Player::create($validatedData);
 

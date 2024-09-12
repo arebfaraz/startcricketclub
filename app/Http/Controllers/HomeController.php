@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MembershipConfirmation;
 use App\Mail\MembershipMail;
 use App\Models\MatchResult;
 use App\Models\Membership;
@@ -14,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use Gregwar\Captcha\CaptchaBuilder;
+use Illuminate\Support\Facades\File;
 
 class HomeController extends Controller
 {
@@ -37,8 +39,17 @@ class HomeController extends Controller
 
     public function membership()
     {
+        $filePath = public_path('front/countries.json');
+
+        // Get the content of the JSON file
+        $json = File::get($filePath);
+
+        // Decode the JSON data
+        $countries = json_decode($json, true);
+
+
         $jersey_nos = Membership::pluck('jersey_number')->toArray();
-        return view('front.membership', compact('jersey_nos'));
+        return view('front.membership', compact('jersey_nos', 'countries'));
     }
 
     public function membershipStore(Request $request)
@@ -46,7 +57,8 @@ class HomeController extends Controller
         $validatedData = $request->validate(
             [
                 'player_name' => 'required',
-                'phone' => 'required',
+                'phone' => 'required|numeric',
+                'email' => 'required|email',
                 'status' => 'required',
                 'city' => 'required',
                 'nationality' => 'required',
@@ -68,6 +80,7 @@ class HomeController extends Controller
 
         $sessionCaptcha = Session::get('session_refresh');
         if ($sessionCaptcha === $request->captcha_code) {
+            $validatedData['reg_no'] = $this->generateUniqueRegNo();
 
             if ($request->hasFile('photo')) {
                 $photo = $request->file('photo');
@@ -87,8 +100,9 @@ class HomeController extends Controller
 
             Membership::create($validatedData);
 
-            Mail::to('nirmaljit1983@gmail.com')->send(new MembershipMail($validatedData));
-            // Mail::to('mofaisal739@gmail.com')->send(new MembershipMail($validatedData));
+            // Mail::to('nirmaljit1983@gmail.com')->send(new MembershipMail($validatedData));
+            Mail::to('mofaisal739@gmail.com')->send(new MembershipMail($validatedData));
+            Mail::to($request->email)->send(new MembershipConfirmation($validatedData));
 
             return redirect()->route('home')->with('success', 'Thank you for contacting us! We will get back soon.');
         } else {
@@ -105,5 +119,15 @@ class HomeController extends Controller
         Session::put('session_refresh', $session);
         $check =  Session::get('session_refresh');
         return response()->json(['session_refresh' => $check, 'result' => $builder->inline()]);
+    }
+
+    private function generateUniqueRegNo()
+    {
+        do {
+            // Step 2: Generate the registration number
+            $reg_no = 'CLC' . mt_rand(100000, 999999);
+        } while (Membership::where('reg_no', $reg_no)->exists()); // Step 3: Ensure it is unique
+
+        return $reg_no;
     }
 }

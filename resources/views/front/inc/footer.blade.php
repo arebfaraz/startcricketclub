@@ -64,14 +64,18 @@
                 <div class="social">
                     <h5 class="light-black ">FOLLOW US!</h5>
                     <ul class="unstyled social-icons">
-                        <li><a href="#"><img src="{{ asset('front/img/icons/Facebook.png') }}" alt=""></a>
+                        <li><a href="https://m.facebook.com/profile.php?mibextid=LQQJ4d" target="_blank">
+                                <img src="{{ asset('front/img/icons/Facebook.png') }}" alt=""></a>
                         </li>
-                        <li><a href="#"><img src="{{ asset('front/img/icons/Twitter.png') }}" alt=""></a>
+                        <li><a href="https://youtube.com/@starcricketclub_cambodia?si=BgCD8qnHorIrfPpz" target="_blank">
+                                <img src="{{ asset('front/img/icons/Youtube.png') }}" alt=""></a>
                         </li>
-                        <li><a href="#"><img src="{{ asset('front/img/icons/Instagram.png') }}"
-                                    alt=""></a>
+                        <li><a href="https://www.instagram.com/starcricketclub_cambodia?igsh=djZzdHE1NmFndW0z&utm_source=qr"
+                                target="_blank">
+                                <img src="{{ asset('front/img/icons/Instagram.png') }}" alt=""></a>
                         </li>
-                        <li><a href="#"><img src="{{ asset('front/img/icons/Linkedin.png') }}" alt=""></a>
+                        <li><a href="https://www.tiktok.com/@starcricketclub_cambodia" target="_blank">
+                                <img src="{{ asset('front/img/icons/Ticktok.png') }}" alt=""></a>
                         </li>
                     </ul>
                 </div>
