@@ -1901,9 +1901,9 @@ header nav .left-nav .navbar-nav .has-children:hover .submenu li {
     -ms-transform: translateX(0);
     transform: translateX(0);
 }
-header.small-screen {
+/* header.small-screen {
     padding: 16px 0 8px;
-}
+} */
 @media screen and (min-width: 991px) {
     header.small-screen {
         display: none;

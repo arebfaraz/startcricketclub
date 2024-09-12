@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Striker HTML5 Template">
 
-    <title>Star Cricket</title>
+    <title>Star Cricket Club , Phnom Penh</title>
 
 
     <!-- Favicon -->
@@ -123,19 +123,27 @@
     </script>
 
     <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function() {
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 250) {
-                    document.getElementById('navbar_top').classList.add('fixed-top');
-                    document.getElementById('navbar_top_small').classList.add('fixed-top');
-                    // add padding top to show content behind navbar
-                    navbar_height = document.querySelector('.navbar').offsetHeight;
-                    document.body.style.paddingTop = navbar_height + 'px';
+        $(document).ready(function() {
+            $(window).on('scroll', function() {
+                if ($(window).scrollTop() > 250) {
+                    $('#navbar_top').addClass('fixed-top');
+                    $('#navbar_top_small').addClass('fixed-top');
+                    $('#navbar-logo').addClass('d-none');
+                    $('#navbar-right').addClass('d-none');
+                    // $('#mynavbar div').removeClass('col-lg-8');
+
+                    // Add padding top to show content behind the navbar
+                    var navbarHeight = $('.navbar').outerHeight();
+                    $('body').css('padding-top', navbarHeight + 'px');
                 } else {
-                    document.getElementById('navbar_top').classList.remove('fixed-top');
-                    document.getElementById('navbar_top_small').classList.remove('fixed-top');
-                    // remove padding top from body
-                    document.body.style.paddingTop = '0';
+                    $('#navbar_top').removeClass('fixed-top');
+                    $('#navbar_top_small').removeClass('fixed-top');
+                    $('#navbar-logo').removeClass('d-none');
+                    $('#navbar-right').removeClass('d-none');
+                    // $('#mynavbar div').addClass('col-lg-8');
+
+                    // Remove padding top from the body
+                    $('body').css('padding-top', '0');
                 }
             });
         });

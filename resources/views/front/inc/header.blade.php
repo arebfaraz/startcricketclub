@@ -1,14 +1,18 @@
 <header class="large-screens" id="navbar_top">
     <div class="container">
         <nav class="navbar navbar-expand-lg p-0">
-            <div class="collapse navbar-collapse" id="mynavbar">
-                <div class="col-lg-8">
+            <div class="collapse navbar-collapse justify-content-center" id="mynavbar">
+                <div class="col-lg-8 d-flex justify-content-center">
                     <div class="left-nav">
-                        <a href="{{ route('home') }}" class="navbar-brand m-0 p-0"><img alt
-                                src="{{ asset('front/img/logo.png') }}"></a>
-                        <ul class="navbar-nav m-0">
-                            <li class="menu-item"><a href="{{ route('home') }}"
-                                    class="{{ Request::routeIs('home') ? 'active' : '' }}">Home</a></li>
+                        <a href="{{ route('home') }}" class="navbar-brand m-0 p-0" id="navbar-logo">
+                            <img alt src="{{ asset('front/img/logo.png') }}">
+                        </a>
+                        <ul class="navbar-nav m-0 py-2">
+                            <li class="menu-item">
+                                <a href="{{ route('home') }}"
+                                    class="{{ Request::routeIs('home') ? 'active' : '' }}">Home
+                                </a>
+                            </li>
                             <li class="menu-item"><a href="#">ABOUT US</a></li>
                             <li class="menu-item"><a href="#">GALLERY</a></li>
                             {{-- <li class="has-children">
@@ -34,7 +38,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 d-flex justify-content-end">
+                <div class="col-lg-4 d-flex justify-content-end" id="navbar-right">
                     {{-- <form action="https://uiparadox.co.uk/templates/cricket-pulse/v2/index.html"
                         class="input-group search-bar">
                         <input type="text" placeholder="Search..." required>
