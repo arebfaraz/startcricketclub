@@ -11,9 +11,7 @@ use App\Models\Team;
 use App\Models\UpcomingMatch;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
-use Gregwar\Captcha\CaptchaBuilder;
 use Illuminate\Support\Facades\File;
 
 class HomeController extends Controller
@@ -68,59 +66,43 @@ class HomeController extends Controller
                 'image' => 'required|file',
                 'payment_screenshot' => 'nullable|file',
                 'is_agree' => 'required',
-                'captcha_code' => 'required',
+                'g-recaptcha-response' => 'required|captcha',
             ],
             [
                 'is_agree.required' => 'Please check',
-                'captcha_code.required' => 'Captcha is required',
+                'g-recaptcha-response.required' => 'Captcha is required',
                 'jersey_number.unique' => 'The jersey number already taken',
                 'phone.unique' => 'The phone already registered',
                 'email.unique' => 'The email already registered',
             ]
         );
 
-        $sessionCaptcha = Session::get('session_refresh');
-        if ($sessionCaptcha === $request->captcha_code) {
-            $validatedData['sr_no'] = $this->generateUniqueSrNo();
-            $validatedData['type'] = '3';
+        $validatedData['sr_no'] = $this->generateUniqueSrNo();
+        $validatedData['type'] = '3';
 
-            if ($request->hasFile('image')) {
-                $image = $request->file('image');
-                $originalName = str_replace(' ', '_', $image->getClientOriginalName());
-                $imageName =  time()  . '_' . $originalName;
-                $image->storeAs('player_images', $imageName, 'public');
-                $validatedData['image'] = $imageName;
-            }
-
-            if ($request->hasFile('payment_screenshot')) {
-                $screenshot = $request->file('payment_screenshot');
-                $originalName = str_replace(' ', '_', $screenshot->getClientOriginalName());
-                $screenshotName =  time()  . '_' . $originalName;
-                $screenshot->storeAs('payments', $screenshotName, 'public');
-                $validatedData['payment_screenshot'] = $screenshotName;
-            }
-
-            Player::create($validatedData);
-
-            // Mail::to('nirmaljit1983@gmail.com')->send(new MembershipMail($validatedData));
-            Mail::to('mofaisal739@gmail.com')->send(new MembershipMail($validatedData));
-            Mail::to($request->email)->send(new MembershipConfirmation($validatedData));
-
-            return redirect()->route('home')->with('success', 'Thank you for contacting us! We will get back soon.');
-        } else {
-            return redirect()->back()->withInput()->with('error', 'Invalid Captcha');
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $originalName = str_replace(' ', '_', $image->getClientOriginalName());
+            $imageName =  time()  . '_' . $originalName;
+            $image->storeAs('player_images', $imageName, 'public');
+            $validatedData['image'] = $imageName;
         }
-    }
 
-    public function updateImage()
-    {
-        $builder = new CaptchaBuilder;
-        $builder->build();
-        $session = $builder->getPhrase();
-        session()->forget('session_refresh');
-        Session::put('session_refresh', $session);
-        $check =  Session::get('session_refresh');
-        return response()->json(['session_refresh' => $check, 'result' => $builder->inline()]);
+        if ($request->hasFile('payment_screenshot')) {
+            $screenshot = $request->file('payment_screenshot');
+            $originalName = str_replace(' ', '_', $screenshot->getClientOriginalName());
+            $screenshotName =  time()  . '_' . $originalName;
+            $screenshot->storeAs('payments', $screenshotName, 'public');
+            $validatedData['payment_screenshot'] = $screenshotName;
+        }
+
+        Player::create($validatedData);
+
+        // Mail::to('nirmaljit1983@gmail.com')->send(new MembershipMail($validatedData));
+        Mail::to('mofaisal739@gmail.com')->send(new MembershipMail($validatedData));
+        Mail::to($request->email)->send(new MembershipConfirmation($validatedData));
+
+        return redirect()->route('home')->with('success', 'Thank you for contacting us! We will get back soon.');
     }
 
     private function generateUniqueSrNo()

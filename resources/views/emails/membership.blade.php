@@ -55,7 +55,7 @@
             <table class="details">
                 <tr>
                     <td><strong>Player Name:</strong></td>
-                    <td>{{ $data['player_name'] }}</td>
+                    <td>{{ $data['name'] }}</td>
                 </tr>
                 <tr>
                     <td><strong>Phone:</strong></td>
@@ -67,7 +67,7 @@
                 </tr>
                 <tr>
                     <td><strong>Status In Cambodia:</strong></td>
-                    <td>{{ $data['status'] }}</td>
+                    <td>{{ $data['status_in_cambodia'] }}</td>
                 </tr>
                 <tr>
                     <td><strong>City:</strong></td>

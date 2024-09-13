@@ -1,19 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @php
-        use Gregwar\Captcha\CaptchaBuilder;
-
-        try {
-            $builder = new CaptchaBuilder();
-            $builder->build();
-            $session = $builder->getPhrase();
-            Session::put('session_refresh', $session);
-        } catch (Exception $e) {
-            //
-        }
-
-    @endphp
     <!-- Page Start Banner Area Start -->
     <div class="page-title-banner">
         <div class="container">
@@ -299,29 +286,13 @@
 
 
                                 </div>
-                                {{-- <div class="col-md-6 d-flex align-items-center gap-3">
 
-
-                                    <img id="your-selector" src="{{ $builder->inline() }}" class="" />
-                                    <i class="fas fa-sync-alt cursor-pointer fs-2 ml-2 text-dark"
-                                        id="captcha-refresh"></i>
-                                </div>
-                                <div class="row mt-3">
-
-                                    <div class="col-md-6">
-                                        <div class="form-group mb-4 text-dark">
-                                            <label for="captcha_code">Captcha<span class="text-danger">*</span></label>
-                                            <input type="text" id="g-recaptcha-response" name="captcha_code"
-                                                class="form-control " id="captcha_code" placeholder="Enter Captcha">
-                                            @error('captcha_code')
-                                                <div class="text-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div> --}}
                                 {!! NoCaptcha::display() !!}
+                                @error('g-recaptcha-response')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
-                            <button type="submit" class="cus-btn primary w-100">Send</button>
+                            <button type="submit" class="cus-btn primary w-100 mt-4">Send</button>
                         </form>
                     </div>
 
@@ -361,22 +332,6 @@
                 } else {
                     $(".jersey_no_err").text('');
                 }
-            });
-
-            $("#captcha-refresh").click(function() {
-
-                $.ajax({
-                    type: "GET",
-                    url: "/update-captcha",
-                    data: "$builder->inline()",
-                    success: function(result, status, xhr) {
-                        console.log(result);
-
-                        $("img#your-selector").attr("src", result['result']);
-
-                    }
-
-                })
             });
 
             $(".image").on("change", function() {

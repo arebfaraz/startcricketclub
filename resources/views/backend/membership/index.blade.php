@@ -61,8 +61,8 @@
                                             @if ($memberships->payment_screenshot)
                                                 <a href="{{ asset('storage/payments/' . $memberships->payment_screenshot) }}"
                                                     target="_blank">
-                                                    <img
-                                                        src="{{ asset('storage/payments/' . $memberships->payment_screenshot) }}"></a>
+                                                    <img src="{{ asset('storage/payments/' . $memberships->payment_screenshot) }}"
+                                                        width="100"></a>
                                             @else
                                                 <span class="text-danger">No Payment Recieve</span>
                                             @endif
