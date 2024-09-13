@@ -149,9 +149,10 @@
 
     <script>
         $(document).ready(function() {
-            $("#basic-datatables").DataTable({});
-
-
+            $('#basic-datatables').DataTable({
+                deferRender: true, // Defers rendering of rows until they are visible
+                responsive: true // Ensures responsiveness
+            });
         });
     </script>
 </body>

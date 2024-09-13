@@ -73,12 +73,12 @@
             <h1>Membership Confirmation</h1>
         </div>
 
-        <h1>Hello, {{ $data['player_name'] }}!</h1>
+        <h1>Hello, {{ $data['name'] }}!</h1>
 
         <p>Thank you for submitting your membership form. We are excited to welcome you to our community.</p>
 
         <p>Your Membership Registration Number is:
-            <span class="membership-number">{{ $data['reg_no'] }}</span>
+            <span class="membership-number">{{ $data['sr_no'] }}</span>
         </p>
 
         <p>Please keep this number safe for future reference.</p>

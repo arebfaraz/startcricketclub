@@ -48,23 +48,23 @@
                                 </div>
 
                                 <div class="col-md-12">
-                                    <div class="form-group mb-4 text-dark @error('photo') has-error  @enderror">
-                                        <label for="photo">Upload Photo<span class="text-danger">*</span></label>
-                                        <input type="file" name="photo" class="form-control image" id="photo"
-                                            data-id="#photoPreview">
-                                        @error('photo')
+                                    <div class="form-group mb-4 text-dark @error('image') has-error  @enderror">
+                                        <label for="image">Upload Image<span class="text-danger">*</span></label>
+                                        <input type="file" name="image" accept="image/*" class="form-control image"
+                                            id="image" data-id="#imagePreview">
+                                        @error('image')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="row" id="photoPreview"></div>
+                                <div class="row" id="imagePreview"></div>
 
                                 <div class="col-md-12">
-                                    <div class="form-group mb-4 text-dark @error('player_name') has-error  @enderror">
-                                        <label for="player_name">Player Name<span class="text-danger">*</span></label>
-                                        <input type="text" name="player_name" class="form-control " id="player_name"
-                                            placeholder="Enter Player Name" value="{{ old('player_name') }}">
-                                        @error('player_name')
+                                    <div class="form-group mb-4 text-dark @error('name') has-error  @enderror">
+                                        <label for="name">Player Name<span class="text-danger">*</span></label>
+                                        <input type="text" name="name" class="form-control " id="name"
+                                            placeholder="Enter Player Name" value="{{ old('name') }}">
+                                        @error('name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -87,21 +87,26 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="form-group mb-4 text-dark @error('status') has-error  @enderror">
-                                        <label for="status">Status In Cambodia<span class="text-danger">*</span></label>
-                                        <select name="status" class="form-control text-dark" id="status">
+                                    <div
+                                        class="form-group mb-4 text-dark @error('status_in_cambodia') has-error  @enderror">
+                                        <label for="status_in_cambodia">Status In Cambodia<span
+                                                class="text-danger">*</span></label>
+                                        <select name="status_in_cambodia" class="form-control text-dark"
+                                            id="status_in_cambodia">
                                             <option value="">Select</option>
                                             <option value="Buisness Visa"
-                                                {{ old('status') == 'Buisness Visa' ? 'selected' : '' }}>Buisness
+                                                {{ old('status_in_cambodia') == 'Buisness Visa' ? 'selected' : '' }}>
+                                                Buisness
                                                 Visa</option>
                                             <option value="Tourist Visa"
-                                                {{ old('status') == 'Tourist Visa' ? 'selected' : '' }}>Tourist
+                                                {{ old('status_in_cambodia') == 'Tourist Visa' ? 'selected' : '' }}>Tourist
                                                 Visa</option>
-                                            <option value="Other" {{ old('status') == 'Other' ? 'selected' : '' }}>
+                                            <option value="Other"
+                                                {{ old('status_in_cambodia') == 'Other' ? 'selected' : '' }}>
                                                 Other
                                             </option>
                                         </select>
-                                        @error('status')
+                                        @error('status_in_cambodia')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -284,7 +289,7 @@
                                             class="form-group mb-4 text-dark @error('payment_screenshot') has-error  @enderror">
                                             <label for="payment_screenshot">Upload Payment Screenshot</label>
                                             <input type="file" name="payment_screenshot" class="form-control image"
-                                                id="payment_screenshot" data-id="#paymentPreview">
+                                                id="payment_screenshot" data-id="#paymentPreview" accept="image/*">
                                             @error('payment_screenshot')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -294,7 +299,7 @@
 
 
                                 </div>
-                                <div class="col-md-6 d-flex align-items-center gap-3">
+                                {{-- <div class="col-md-6 d-flex align-items-center gap-3">
 
 
                                     <img id="your-selector" src="{{ $builder->inline() }}" class="" />
@@ -313,7 +318,8 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
+                                {!! NoCaptcha::display() !!}
                             </div>
                             <button type="submit" class="cus-btn primary w-100">Send</button>
                         </form>
@@ -331,6 +337,8 @@
 @endsection
 
 @push('script')
+    {!! NoCaptcha::renderJs() !!}
+
     <script>
         var jersey_nos = @json($jersey_nos);
 

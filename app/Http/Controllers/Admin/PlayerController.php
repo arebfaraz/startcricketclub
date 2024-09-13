@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Player;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class PlayerController extends Controller
 {
@@ -14,26 +15,7 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        $players = Player::all();
-        $no = 1; // Initialize as an integer
-
-        foreach ($players as $key => $player) {
-            if (!$player->sr_no) {
-                $date = now()->format('ymd'); // Use Laravel's now() helper
-                // Ensure $no has leading zeros and a length of 3 digits
-                $serialNumber = 'CLC' . $date . str_pad($no, 3, '0', STR_PAD_LEFT);
-
-                // Optional: Ensure unique sr_no
-                while (Player::where('sr_no', $serialNumber)->exists()) {
-                    $no++;
-                    $serialNumber = 'CLC' . $date . str_pad($no, 3, '0', STR_PAD_LEFT);
-                }
-
-                $player->sr_no = $serialNumber;
-                $player->save();
-            }
-            $no++;
-        }
+        $players = Player::whereNotNull('team_id')->get();
         return view('backend.player.index', compact('players'));
     }
 
@@ -43,7 +25,16 @@ class PlayerController extends Controller
     public function create()
     {
         $teams = Team::where('active', 'Y')->get();
-        return view('backend.player.add', compact('teams'));
+        $filePath = public_path('front/countries.json');
+
+        // Get the content of the JSON file
+        $json = File::get($filePath);
+
+        // Decode the JSON data
+        $countries = json_decode($json, true);
+        $jersey_nos = Player::pluck('jersey_number')->toArray();
+
+        return view('backend.player.add', compact('teams', 'countries', 'jersey_nos'));
     }
 
     /**
@@ -58,7 +49,13 @@ class PlayerController extends Controller
             'type' => 'required',
             'player_type' => 'required',
             'email' => 'nullable|email',
-            'phone' => 'nullable|numeric',
+            'phone' => 'required|numeric',
+            'status_in_cambodia' => 'required',
+            'city' => 'required',
+            'nationality' => 'required',
+            'jersey_name' => 'required',
+            'jersey_size' => 'required',
+            'jersey_number' => 'required|unique:players,jersey_number',
         ]);
 
         if ($request->hasFile('image')) {
@@ -129,8 +126,15 @@ class PlayerController extends Controller
         $player = Player::find($id);
         if ($player) {
             $teams = Team::where('active', 'Y')->get();
+            $filePath = public_path('front/countries.json');
 
-            return view('backend.player.edit', compact('player', 'teams'));
+            // Get the content of the JSON file
+            $json = File::get($filePath);
+
+            // Decode the JSON data
+            $countries = json_decode($json, true);
+            $jersey_nos = Player::whereNot('id', $id)->pluck('jersey_number')->toArray();
+            return view('backend.player.edit', compact('player', 'teams', 'jersey_nos', 'countries'));
         }
         return redirect()->route('player.index')->with('error', 'Player not found');
     }
@@ -148,6 +152,12 @@ class PlayerController extends Controller
             'player_type' => 'required',
             'email' => 'nullable|email',
             'phone' => 'nullable|numeric',
+            'status_in_cambodia' => 'required',
+            'city' => 'required',
+            'nationality' => 'required',
+            'jersey_name' => 'required',
+            'jersey_size' => 'required',
+            'jersey_number' => 'required|unique:players,jersey_number,' . $id,
         ]);
 
         $player = Player::find($id);

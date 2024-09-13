@@ -217,7 +217,7 @@
                                 Story, Beyond the Boundary</h3>
                             <ul class="list-group mb-4">
                                 <li class="list-group-item">
-                                    <img src="{{ asset('front/img/right-arrow_1.png') }}" alt=""> We are
+                                    <img src="{{ asset('front/img/right-arrow.png') }}" alt=""> We are
                                     officially registered with the Cricket
                                     Federation of Cambodia and proudly
                                     operate the first dedicated and fully equipped cricket ground in Phnom Penh. Our vision
@@ -225,12 +225,12 @@
                                     international stage. We aim to support and develop both expatriate and local young
                                     talent.
                                 </li>
-                                <li class="list-group-item"><img src="{{ asset('front/img/right-arrow_1.png') }}"
+                                <li class="list-group-item"><img src="{{ asset('front/img/right-arrow.png') }}"
                                         alt=""> Register with us to play every weekend.</li>
-                                <li class="list-group-item"><img src="{{ asset('front/img/right-arrow_1.png') }}"
+                                <li class="list-group-item"><img src="{{ asset('front/img/right-arrow.png') }}"
                                         alt=""> Our Cambodian players also have the opportunity to join the
                                     national team.</li>
-                                <li class="list-group-item"><img src="{{ asset('front/img/right-arrow_1.png') }}"
+                                <li class="list-group-item"><img src="{{ asset('front/img/right-arrow.png') }}"
                                         alt=""> Become a member of Star Cricket Club. Click below to join
                                 </li>
                             </ul>

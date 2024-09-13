@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Mail\MembershipConfirmation;
 use App\Mail\MembershipMail;
 use App\Models\MatchResult;
-use App\Models\Membership;
 use App\Models\Player;
 use App\Models\Slider;
 use App\Models\Team;
@@ -39,6 +38,7 @@ class HomeController extends Controller
 
     public function membership()
     {
+
         $filePath = public_path('front/countries.json');
 
         // Get the content of the JSON file
@@ -47,8 +47,7 @@ class HomeController extends Controller
         // Decode the JSON data
         $countries = json_decode($json, true);
 
-
-        $jersey_nos = Membership::pluck('jersey_number')->toArray();
+        $jersey_nos = Player::pluck('jersey_number')->toArray();
         return view('front.membership', compact('jersey_nos', 'countries'));
     }
 
@@ -56,17 +55,17 @@ class HomeController extends Controller
     {
         $validatedData = $request->validate(
             [
-                'player_name' => 'required',
-                'phone' => 'required|numeric',
-                'email' => 'required|email',
-                'status' => 'required',
+                'name' => 'required',
+                'phone' => 'required|numeric|unique:players,phone',
+                'email' => 'required|email|unique:players,email',
+                'status_in_cambodia' => 'required',
                 'city' => 'required',
                 'nationality' => 'required',
                 'player_type' => 'required',
                 'jersey_name' => 'required',
                 'jersey_size' => 'required',
-                'jersey_number' => 'required|unique:memberships,jersey_number',
-                'photo' => 'required|file',
+                'jersey_number' => 'required|unique:players,jersey_number',
+                'image' => 'required|file',
                 'payment_screenshot' => 'nullable|file',
                 'is_agree' => 'required',
                 'captcha_code' => 'required',
@@ -75,30 +74,33 @@ class HomeController extends Controller
                 'is_agree.required' => 'Please check',
                 'captcha_code.required' => 'Captcha is required',
                 'jersey_number.unique' => 'The jersey number already taken',
+                'phone.unique' => 'The phone already registered',
+                'email.unique' => 'The email already registered',
             ]
         );
 
         $sessionCaptcha = Session::get('session_refresh');
         if ($sessionCaptcha === $request->captcha_code) {
-            $validatedData['reg_no'] = $this->generateUniqueRegNo();
+            $validatedData['sr_no'] = $this->generateUniqueSrNo();
+            $validatedData['type'] = '3';
 
-            if ($request->hasFile('photo')) {
-                $photo = $request->file('photo');
-                $originalName = str_replace(' ', '_', $photo->getClientOriginalName());
-                $photoName =  time()  . '_' . $originalName;
-                $photo->storeAs('memberships', $photoName, 'public');
-                $validatedData['photo'] = $photoName;
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $originalName = str_replace(' ', '_', $image->getClientOriginalName());
+                $imageName =  time()  . '_' . $originalName;
+                $image->storeAs('player_images', $imageName, 'public');
+                $validatedData['image'] = $imageName;
             }
 
             if ($request->hasFile('payment_screenshot')) {
                 $screenshot = $request->file('payment_screenshot');
                 $originalName = str_replace(' ', '_', $screenshot->getClientOriginalName());
                 $screenshotName =  time()  . '_' . $originalName;
-                $screenshot->storeAs('memberships', $screenshotName, 'public');
+                $screenshot->storeAs('payments', $screenshotName, 'public');
                 $validatedData['payment_screenshot'] = $screenshotName;
             }
 
-            Membership::create($validatedData);
+            Player::create($validatedData);
 
             // Mail::to('nirmaljit1983@gmail.com')->send(new MembershipMail($validatedData));
             Mail::to('mofaisal739@gmail.com')->send(new MembershipMail($validatedData));
@@ -121,13 +123,43 @@ class HomeController extends Controller
         return response()->json(['session_refresh' => $check, 'result' => $builder->inline()]);
     }
 
-    private function generateUniqueRegNo()
+    private function generateUniqueSrNo()
     {
-        do {
-            // Step 2: Generate the registration number
-            $reg_no = 'CLC' . mt_rand(100000, 999999);
-        } while (Membership::where('reg_no', $reg_no)->exists()); // Step 3: Ensure it is unique
+        // Step 1: Retrieve the last player's sr_no if it exists
+        $lastPlayer = Player::orderBy('id', 'desc')->first();
+        $currentDate = now()->format('ymd');  // Format the current date as ymd (e.g., 240912 for September 12, 2024)
 
-        return $reg_no;
+        if ($lastPlayer && $lastPlayer->sr_no) {
+            // Step 2: Extract the date part from the last sr_no
+            $lastSrNo = $lastPlayer->sr_no;
+            $lastDatePart = substr($lastSrNo, 3, 6);  // Extract the 6 digits after "CLC"
+            $lastNumberPart = substr($lastSrNo, -3);  // Extract the last 3 digits
+
+            if ($lastDatePart === $currentDate) {
+                // If the date matches, increment the last 3 digits
+                $newNumberPart = str_pad(((int) $lastNumberPart + 1), 3, '0', STR_PAD_LEFT);
+            } else {
+                // If the date doesn't match, start with 001
+                $newNumberPart = '001';
+            }
+        } else {
+            // If no previous sr_no exists, start from scratch
+            $newNumberPart = '001';
+        }
+
+        // Step 3: Use do-while loop to ensure the sr_no is unique
+        do {
+            $newSrNo = 'CLC' . $currentDate . $newNumberPart;
+
+            // Check if the sr_no already exists
+            $existingSrNo = Player::where('sr_no', $newSrNo)->exists();
+
+            if ($existingSrNo) {
+                // If it exists, increment the last 3 digits and pad to ensure it's 3 digits long
+                $newNumberPart = str_pad(((int) $newNumberPart + 1), 3, '0', STR_PAD_LEFT);
+            }
+        } while ($existingSrNo);  // Repeat until a unique sr_no is found
+
+        return $newSrNo;
     }
 }

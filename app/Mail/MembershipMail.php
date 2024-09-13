@@ -55,14 +55,14 @@ class MembershipMail extends Mailable
 
         // Attach photo if exists
         if (isset($this->data['photo'])) {
-            $attachments[] = Attachment::fromPath(storage_path('app/public/memberships/' . $this->data['photo']))
-                ->as($this->data['player_name'])
+            $attachments[] = Attachment::fromPath(storage_path('app/public/player_images/' . $this->data['photo']))
+                ->as($this->data['name'])
                 ->withMime('image/jpeg'); // or the appropriate MIME type
         }
 
         // Attach payment screenshot if exists
         if (isset($this->data['payment_screenshot'])) {
-            $attachments[] = Attachment::fromPath(storage_path('app/public/memberships/' . $this->data['payment_screenshot']))
+            $attachments[] = Attachment::fromPath(storage_path('app/public/payments/' . $this->data['payment_screenshot']))
                 ->as('payment_screenshot')
                 ->withMime('image/jpeg'); // or the appropriate MIME type
         }
