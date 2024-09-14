@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,5 +16,17 @@ class Player extends Model
     public function team()
     {
         return $this->belongsTo(Team::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(PlayerPayment::class);
+    }
+
+    public function current_month_payment()
+    {
+        return $this->hasOne(PlayerPayment::class)
+            ->whereMonth('payment_date', Carbon::now()->month)
+            ->whereYear('payment_date', Carbon::now()->year);
     }
 }

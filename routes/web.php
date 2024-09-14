@@ -68,6 +68,6 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('upcoming-match', UpcomingMatchController::class);
     Route::resource('match-result', MatchResultController::class);
     Route::resource('membership', MembershipController::class);
-    Route::get('payment-status', [MembershipController::class, 'paymentStatus'])->name('paymentStatus');
+    Route::post('payment-status', [MembershipController::class, 'paymentStatus'])->name('paymentStatus');
     Route::post('team-assign', [MembershipController::class, 'teamAssign'])->name('teamAssign');
 });

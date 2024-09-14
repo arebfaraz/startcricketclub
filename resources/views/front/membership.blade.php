@@ -269,6 +269,7 @@
                                     <div class="col-12 mb-4">
                                         <img src="{{ asset('front/img/qr_code.jpg') }}" width="300" alt="">
                                     </div>
+                                    <div class="text-danger mb-2">Pay 15 USD</div>
 
 
                                     <div class="col-md-12">
