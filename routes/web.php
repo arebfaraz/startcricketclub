@@ -44,7 +44,12 @@ Route::get('/link_storage', function () {
 // Auth::routes();
 
 Route::get('/', [ControllersHomeController::class, 'index'])->name('home');
+Route::get('/about-us', [ControllersHomeController::class, 'about'])->name('about');
 Route::get('/membership', [ControllersHomeController::class, 'membership'])->name('membership');
+Route::get('/players', [ControllersHomeController::class, 'players'])->name('players');
+Route::get('/upcoming-matches', [ControllersHomeController::class, 'upcomingMatches'])->name('upcomingMatches');
+Route::get('/match-results', [ControllersHomeController::class, 'matchResults'])->name('matchResults');
+Route::get('/player/{slug}', [ControllersHomeController::class, 'playerDetails'])->name('playerDetails');
 Route::post('/membership-store', [ControllersHomeController::class, 'membershipStore'])->name('membershipStore');
 Route::get('/update-captcha', [ControllersHomeController::class, 'updateImage']);
 

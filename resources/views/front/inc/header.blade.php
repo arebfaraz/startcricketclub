@@ -13,7 +13,11 @@
                                     class="{{ Request::routeIs('home') ? 'active' : '' }}">Home
                                 </a>
                             </li>
-                            <li class="menu-item"><a href="#">ABOUT US</a></li>
+                            <li class="menu-item">
+                                <a href="{{ route('about') }}"
+                                    class="{{ Request::routeIs('about') ? 'active' : '' }}">ABOUT US
+                                </a>
+                            </li>
                             <li class="menu-item"><a href="#">GALLERY</a></li>
                             {{-- <li class="has-children">
                                 <a href="javascript:void(0);">Pages</a>
@@ -68,7 +72,7 @@
         <nav class="mobile-navar d-xl-none">
             <ul>
                 <li><a href="{{ route('home') }}" class="active">Home</a></li>
-                <li><a href="#">ABOUT US</a></li>
+                <li><a href="{{ route('about') }}">ABOUT US</a></li>
                 <li><a href="#">Gallery</a></li>
                 {{-- <li class="has-children">Pages <span class="icon-arrow"></span>
                     <ul class="children">

@@ -59,18 +59,7 @@
     @endif
     <!-- Hero Banner End -->
     <!-- Brands Start -->
-    {{-- <div class="brands p-40">
-        <div class="container">
-            <div class="brands-logo">
 
-                @foreach ($teams as $team)
-                    <div class="logo">
-                        <img src="{{ asset('storage/team_logos/' . $team->logo) }}" alt>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div> --}}
     <div class="brands p-40">
         <div class="container">
             <div class="brands-logo">
@@ -105,7 +94,7 @@
                             colleges, and local levels to the international stage.
                         </p>
                     </div>
-                    <a href="#" class="cus-btn primary">See All
+                    <a href="{{ route('matchResults') }}" class="cus-btn primary">See All
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                             fill="none">
                             <g clip-path="url(#clip0_925_428)">
@@ -278,7 +267,7 @@
                                 colleges, and local levels to the international stage.
                             </p>
                         </div>
-                        <a href="#" class="cus-btn primary">See All
+                        <a href="{{ route('upcomingMatches') }}" class="cus-btn primary">See All
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                                 fill="none">
                                 <g clip-path="url(#clip0_925_429)">
@@ -297,8 +286,6 @@
                     </div>
                     <div class="list-block">
                         @foreach ($upcomingMatches as $match)
-                            @php
-                            @endphp
                             <div class="list-item">
                                 <div class="teams-location">
                                     <div class="teams">
@@ -469,7 +456,7 @@
                                 colleges, and local levels to the international stage.
                             </p>
                         </div>
-                        <a href="#" class="cus-btn primary">See All
+                        <a href="{{ route('players') }}" class="cus-btn primary">See All
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                                 fill="none">
                                 <g clip-path="url(#clip0_925_431)">
@@ -488,12 +475,17 @@
                     </div>
                     <div class="team-slider">
                         @foreach ($players as $player)
-                            <a href="#" class="team-member">
+                            @php
+                                $slug = \Illuminate\Support\Str::slug($player->name);
+                            @endphp
+                            <a href="{{ route('playerDetails', $slug) }}" class="team-member">
                                 <div class="content">
                                     <div class="info">
                                         <div class="left-stroke bg-green"></div>
                                         <h3 class="light-black mb-1">{{ $player->name }}</h3>
-                                        <h6 class="dark-gray mb-12">{{ $player->player_type }}</h6>
+                                        <h6 class="dark-gray mb-12">
+                                            {{ $player->player_type . ' / ' }}{{ $player->type == '1' ? 'Captain' : ($player->type == '2' ? 'Vice Captain' : 'Player') }}
+                                        </h6>
                                         <div class="rating">
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>

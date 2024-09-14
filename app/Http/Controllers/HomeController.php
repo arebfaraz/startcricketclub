@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -34,6 +35,11 @@ class HomeController extends Controller
         return view('front.home', $data);
     }
 
+    public function about()
+    {
+        return view('front.about');
+    }
+
     public function membership()
     {
 
@@ -47,6 +53,46 @@ class HomeController extends Controller
 
         $jersey_nos = Player::pluck('jersey_number')->toArray();
         return view('front.membership', compact('jersey_nos', 'countries'));
+    }
+
+    public function players(Request $request)
+    {
+        $players = Player::whereNotNull('team_id')->where('active', 'Y')->latest();
+        if ($request->search) {
+            $players->where('name', 'LIKE', '%' . $request->search . '%');
+        }
+        $players = $players->paginate(9);
+        return view('front.players', compact('players'));
+    }
+
+    public function upcomingMatches()
+    {
+        $now = Carbon::now();
+
+        $upcomingMatches = UpcomingMatch::whereRaw("CONCAT(date, ' ', time) >= ?", [$now])
+            ->orderBy('date', 'asc')
+            ->orderBy('time', 'asc')
+            ->paginate(6);
+
+        return view('front.upcoming-matches', compact('upcomingMatches'));
+    }
+
+    public function matchResults()
+    {
+        $results = MatchResult::latest()->paginate(6);
+
+        return view('front.match-result', compact('results'));
+    }
+
+    public function playerDetails($slug)
+    {
+        // Normalize the slug by removing hyphens and converting to lowercase
+        $normalizedSlug = strtolower(str_replace('-', ' ', $slug));
+
+        // Query the database to find the player with the normalized name
+        $player = Player::whereRaw('LOWER(REPLACE(name, "-", " ")) = ?', [$normalizedSlug])->firstOrFail();
+
+        return view('front.player-detail', compact('player'));
     }
 
     public function membershipStore(Request $request)

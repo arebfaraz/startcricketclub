@@ -144,3 +144,7 @@ input[type="checkbox"]:checked + .slider {
 input[type="checkbox"]:checked + .slider:before {
     transform: translateX(26px);
 }
+
+.team-member .content img {
+    height: 333px;
+}
