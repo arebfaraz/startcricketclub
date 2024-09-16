@@ -15,7 +15,7 @@ class MembershipController extends Controller
     {
         $memberships = Player::whereNull('team_id')
             ->orWhereDoesntHave('current_month_payment')
-            ->get();
+            ->latest()->get();
         $teams = Team::where('active', 'Y')->get();
         return view('backend.membership.index', compact('memberships', 'teams'));
     }

@@ -28,9 +28,10 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="basic-datatables" class="display table table-striped table-hover basic-datatables">
+                        <table id="members-datatables" class="display table table-striped table-hover">
                             <thead>
                                 <tr>
+                                    <th>Registration Date</th>
                                     <th>Sr. No.</th>
                                     <th>Name</th>
                                     <th>Image</th>
@@ -46,6 +47,7 @@
                             <tbody>
                                 @forelse ($memberships as $membership)
                                     <tr>
+                                        <td>{{ $membership->created_at->format('d M, Y') }}</td>
                                         <td>{{ $membership->sr_no ?? '-' }}</td>
                                         <td>{{ $membership->name }}</td>
                                         <td>
@@ -150,7 +152,6 @@
             </div>
         </div>
     </div>
-
 
     <!--Payment Modal -->
     <div class="modal fade" id="paymentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -264,6 +265,14 @@
                     $(".date_err").text('');
 
                 }
+            });
+        });
+
+        $(document).ready(function() {
+            $('#members-datatables').DataTable({
+                order: [
+                    [0, 'desc']
+                ], // Orders the first column (index 0) in descending order
             });
         });
     </script>
