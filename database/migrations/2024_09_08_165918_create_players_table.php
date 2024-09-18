@@ -19,8 +19,17 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('image')->nullable();
+            $table->longText('bio')->nullable();
+            $table->longText('history')->nullable();
             $table->enum('type', ['1', '2', '3'])->comment('1 => Captain, 2 => Vice Captain, 3 => Player')->nullable();
             $table->string('player_type')->nullable();
+            $table->string('status_in_cambodia')->nullable();
+            $table->string('city')->nullable();
+            $table->string('nationality')->nullable();
+            $table->string('jersey_name')->nullable();
+            $table->string('jersey_size')->nullable();
+            $table->string('jersey_number')->nullable();
+            $table->string('payment_screenshot')->nullable();
             $table->enum('is_highlight', ['Y', 'N'])->default('N')->nullable();
             $table->enum('active', ['Y', 'N'])->default('Y')->nullable();
             $table->softDeletes();

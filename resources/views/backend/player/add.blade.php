@@ -73,7 +73,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group @error('phone') has-error  @enderror">
-                                    <label for="phone">Phone</label>
+                                    <label for="phone">Phone<span class="text-danger">*</span></label>
                                     <input type="text" name="phone" class="form-control form-control-sm "
                                         id="phone" placeholder="Enter Phone" value="{{ old('phone') }}"
                                         onkeypress="return event.charCode >= 48 && event.charCode <= 57">
@@ -264,6 +264,28 @@
                                         value="{{ old('jersey_number') }}"
                                         onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                                     @error('jersey_number')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                    <div class="text-danger jersey_no_err"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group @error('bio') has-error  @enderror">
+                                    <label for="bio">Bio<span class="text-danger">*</span></label>
+                                    <textarea name="bio" id="bio" cols="30" rows="5" class="form-control form-control-sm"
+                                        placeholder="Enter Bio">{{ old('bio') }}</textarea>
+                                    @error('bio')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                    <div class="text-danger jersey_no_err"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group @error('history') has-error  @enderror">
+                                    <label for="history">History</label>
+                                    <textarea name="history" id="history" cols="30" rows="5" class="form-control form-control-sm"
+                                        placeholder="Enter History">{{ old('history') }}</textarea>
+                                    @error('history')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                     <div class="text-danger jersey_no_err"></div>

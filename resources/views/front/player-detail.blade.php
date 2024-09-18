@@ -39,15 +39,23 @@
                                     <i class="fas fa-star"></i>
                                 </div>
                                 <h4 class="light-black mb-12">Bio:</h4>
-                                <p class="dark-gray mb-24">{{ $player->name }} is a talented cricketer known
-                                    for their skills in {{ $player->name }}. With a strong
-                                    track record in domestic and international cricket, {{ $player->player_type }} has made
-                                    a
-                                    significant impact on the field. He brings exceptional
-                                    technique, powerful performance, strategic play to the game, and continues to be a
-                                    valuable asset to the team. {{ $player->name }}'s dedication and passion for cricket
-                                    have
-                                    earned him recognition and respect in the cricketing community.</p>
+                                <p class="dark-gray mb-24">
+                                    @if ($player->bio)
+                                        {{ $player->bio }}
+                                    @else
+                                        {{ $player->name }} is a talented cricketer known
+                                        for their skills in {{ $player->name }}. With a strong
+                                        track record in domestic and international cricket, {{ $player->player_type }} has
+                                        made
+                                        a
+                                        significant impact on the field. He brings exceptional
+                                        technique, powerful performance, strategic play to the game, and continues to be a
+                                        valuable asset to the team. {{ $player->name }}'s dedication and passion for cricket
+                                        have
+                                        earned him recognition and respect in the cricketing community.
+                                    @endif
+
+                                </p>
                                 <h4 class="light-black mb-12">Share</h4>
                                 <ul class="unstyled social-icons">
                                     <li><a href="player-detail.html">
@@ -144,14 +152,24 @@
             <div class="container">
                 <div class="col-lg-6 col-md-8 col-sm-12 ">
                     <h3 class="mb-32">About Player</h3>
-                    <h5 class="mb-16">Biography</h5>
-                    <p class="mb-16">Lorem ipsum dolor sit amet consectetur. Lobortis sed consectetur diam aliquam.
-                        Adipiscing condimentum fermentum pharetra venenatis feugiat eget eget. Pellentesque enim iaculis
-                        auctor nulla ornare faucibus. Diam diam lorem ut lectus dis eget ultricies. Id mattis nibh eu
-                        lobortis nisl lacus mollis.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur. Lobortis sed consectetur diam aliquam. Adipiscing condimentum
-                        fermentum pharetra venenatis feugiat eget eget. Pellentesque enim iaculis auctor nulla ornare
-                        faucibus.</p>
+                    <p class="mb-16">
+                        @if ($player->history)
+                            {{ $player->history }}
+                        @elseif ($player->bio)
+                            {{ $player->bio }}
+                        @else
+                            {{ $player->name }} is a talented cricketer known
+                            for their skills in {{ $player->name }}. With a strong
+                            track record in domestic and international cricket, {{ $player->player_type }} has
+                            made
+                            a
+                            significant impact on the field. He brings exceptional
+                            technique, powerful performance, strategic play to the game, and continues to be a
+                            valuable asset to the team. {{ $player->name }}'s dedication and passion for cricket
+                            have
+                            earned him recognition and respect in the cricketing community.
+                        @endif
+                    </p>
                 </div>
             </div>
         </section>

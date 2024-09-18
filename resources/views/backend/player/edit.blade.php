@@ -65,7 +65,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group @error('email') has-error  @enderror">
-                                    <label for="email">Email<span class="text-danger">*</span></label>
+                                    <label for="email">Email</label>
                                     <input type="email" name="email" class="form-control form-control-sm" id="email"
                                         placeholder="Enter Email" value="{{ old('email', $player->email) }}">
                                     @error('email')
@@ -75,7 +75,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group @error('phone') has-error  @enderror">
-                                    <label for="phone">Phone</label>
+                                    <label for="phone">Phone<span class="text-danger">*</span></label>
                                     <input type="text" name="phone" class="form-control form-control-sm "
                                         id="phone" placeholder="Enter Phone" value="{{ old('phone', $player->phone) }}"
                                         onkeypress="return event.charCode >= 48 && event.charCode <= 57">
@@ -285,6 +285,28 @@
                                         value="{{ old('jersey_number', $player->jersey_number) }}"
                                         onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                                     @error('jersey_number')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                    <div class="text-danger jersey_no_err"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group @error('bio') has-error  @enderror">
+                                    <label for="bio">Bio<span class="text-danger">*</span></label>
+                                    <textarea name="bio" id="bio" cols="30" rows="5" class="form-control form-control-sm"
+                                        placeholder="Enter Bio">{{ old('bio', $player->bio) }}</textarea>
+                                    @error('bio')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                    <div class="text-danger jersey_no_err"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group @error('history') has-error  @enderror">
+                                    <label for="history">History</label>
+                                    <textarea name="history" id="history" cols="30" rows="5" class="form-control form-control-sm"
+                                        placeholder="Enter History">{{ old('history', $player->history) }}</textarea>
+                                    @error('history')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                     <div class="text-danger jersey_no_err"></div>
