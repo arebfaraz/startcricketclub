@@ -298,7 +298,6 @@
                                     @error('bio')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                    <div class="text-danger jersey_no_err"></div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -309,7 +308,6 @@
                                     @error('history')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                    <div class="text-danger jersey_no_err"></div>
                                 </div>
                             </div>
                             <div class="col-md-6">

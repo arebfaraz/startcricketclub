@@ -18,6 +18,11 @@ class Player extends Model
         return $this->belongsTo(Team::class);
     }
 
+    public function stats()
+    {
+        return $this->hasOne(PlayerStat::class);
+    }
+
     public function payments()
     {
         return $this->hasMany(PlayerPayment::class);

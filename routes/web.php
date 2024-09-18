@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\MatchResultController;
 use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\Admin\PlayerController;
+use App\Http\Controllers\Admin\PlayerStatController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\UpcomingMatchController;
@@ -73,6 +74,7 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('upcoming-match', UpcomingMatchController::class);
     Route::resource('match-result', MatchResultController::class);
     Route::resource('membership', MembershipController::class);
+    Route::resource('player-stats', PlayerStatController::class);
     Route::post('payment-status', [MembershipController::class, 'paymentStatus'])->name('paymentStatus');
     Route::post('team-assign', [MembershipController::class, 'teamAssign'])->name('teamAssign');
 });

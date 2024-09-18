@@ -81,30 +81,31 @@
                                 <div class="text-end">
                                     <div class="detail left-auto">
                                         <h5 class="green mb-8">Match</h5>
-                                        <h4 class="light-black">120</h4>
+
+                                        <h4 class="light-black">{{ @$player->stats->matches ?? 0 }}</h4>
                                     </div>
                                 </div>
                                 <div class="text-center">
                                     <div class="detail left-right-auto">
                                         <h5 class="green mb-8">inn</h5>
-                                        <h4 class="light-black">120</h4>
+                                        <h4 class="light-black">{{ @$player->stats->innings ?? 0 }}</h4>
                                     </div>
                                 </div>
                                 <div class="detail right-auto">
                                     <h5 class="green mb-8">Runs</h5>
-                                    <h4 class="light-black">1540</h4>
+                                    <h4 class="light-black">{{ @$player->stats->runs ?? 0 }}</h4>
                                 </div>
                                 <div class="text-center">
                                     <div class="detail left-right-auto">
                                         <h5 class="green mb-8">Catch</h5>
-                                        <h4 class="light-black">15</h4>
+                                        <h4 class="light-black">{{ @$player->stats->catches ?? 0 }}</h4>
                                     </div>
                                 </div>
                                 <div class="text-end">
 
                                     <div class="detail left-auto">
                                         <h5 class="green mb-8">Avg</h5>
-                                        <h4 class="light-black">52.50</h4>
+                                        <h4 class="light-black">{{ @$player->stats->average ?? 0 }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -112,31 +113,41 @@
                                 <div class="text-start">
                                     <div class="detail right-auto">
                                         <h5 class="green mb-8">S/R</h5>
-                                        <h4 class="light-black">150.30</h4>
+                                        <h4 class="light-black">{{ @$player->stats->strike_rate ?? 0 }}</h4>
                                     </div>
                                 </div>
                                 <div class="text-center">
                                     <div class="detail left-right-auto">
                                         <h5 class="green mb-8">HR</h5>
-                                        <h4 class="light-black">150*</h4>
+                                        <h4 class="light-black">{{ @$player->stats->highest_runs ?? 0 }}</h4>
                                     </div>
                                 </div>
+                                @php
+                                    $is_bowler = strpos($player->player_type, 'Bowler') !== false ? true : false;
+                                @endphp
+
                                 <div class="text-end">
                                     <div class="detail left-auto">
-                                        <h5 class="green mb-8">50</h5>
-                                        <h4 class="light-black">12</h4>
+                                        <h5 class="green mb-8">{{ $is_bowler ? 'Over' : '50' }}</h5>
+                                        <h4 class="light-black">
+                                            {{ $is_bowler ? @$player->stats->overs ?? 0 : @$player->stats->fifties ?? 0 }}
+                                        </h4>
                                     </div>
                                 </div>
                                 <div class="text-center">
                                     <div class="detail left-right-auto">
-                                        <h5 class="green mb-8">100</h5>
-                                        <h4 class="light-black">4</h4>
+                                        <h5 class="green mb-8">{{ $is_bowler ? 'Wicket' : '100' }}</h5>
+                                        <h4 class="light-black">
+                                            {{ $is_bowler ? @$player->stats->wickets ?? 0 : @$player->stats->hundreds ?? 0 }}
+                                        </h4>
                                     </div>
                                 </div>
+
                                 <div class="text-start">
                                     <div class="detail left-auto">
                                         <h5 class="green mb-8">4s/6s</h5>
-                                        <h4 class="light-black">60/39</h4>
+                                        <h4 class="light-black">
+                                            {{ @$player->stats->fours ?? 0 }}/{{ @$player->stats->sixes ?? 0 }}</h4>
                                     </div>
                                 </div>
                             </div>

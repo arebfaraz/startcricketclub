@@ -107,8 +107,10 @@ class PlayerController extends Controller
         $validatedData['sr_no'] = $newSrNo;
 
 
-        Player::create($validatedData);
-
+        $player = Player::create($validatedData);
+        if ($request->submit == 'stats') {
+            return redirect()->route('player-stats.show', $player->id);
+        }
         return redirect()->route('player.index')->with('success', 'Player added successfully');
     }
 

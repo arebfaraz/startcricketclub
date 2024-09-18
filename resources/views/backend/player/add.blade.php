@@ -277,7 +277,6 @@
                                     @error('bio')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                    <div class="text-danger jersey_no_err"></div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -288,7 +287,6 @@
                                     @error('history')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                    <div class="text-danger jersey_no_err"></div>
                                 </div>
                             </div>
 
@@ -309,8 +307,12 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-sm">
+                                    <button type="submit" name="submit" value="submit" class="btn btn-primary btn-sm">
                                         Submit
+                                    </button>
+                                    <button type="submit" value="stats" name="submit"
+                                        class="btn btn-secondary btn-sm ms-4">
+                                        Submit & Add Stats
                                     </button>
                                 </div>
                             </div>

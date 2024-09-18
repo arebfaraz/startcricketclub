@@ -44,6 +44,7 @@
                                     <th>Phone</th>
                                     <th>Active</th>
                                     <th>Action</th>
+                                    <th>Stats</th>
                                 </tr>
                             </thead>
 
@@ -82,6 +83,11 @@
                                                 </form>
                                             </span>
                                         </td>
+                                        <td>
+                                            <a class="btn btn-secondary btn-sm"
+                                                href="{{ route('player-stats.show', $player->id) }}">Stats</a>
+                                        </td>
+
                                     </tr>
                                 @empty
                                     <tr>
