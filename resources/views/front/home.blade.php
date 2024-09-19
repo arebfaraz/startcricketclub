@@ -384,36 +384,14 @@
                     </a>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 col-12 mb-24">
-                        <div class="img-block br-20 shadow">
-                            <img src="front/img/gallery/img-1.png" alt>
+                    @foreach ($galleries as $gallery)
+                        <div class="col-lg-4 col-sm-6 mb-24">
+                            <div class="img-block br-20 shadow">
+                                <img src="{{ asset('storage/galleries/' . $gallery->image) }}" alt>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 mb-24">
-                        <div class="img-block br-20 shadow">
-                            <img src="front/img/gallery/img-2.png" alt>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 mb-24">
-                        <div class="img-block br-20 shadow">
-                            <img src="front/img/gallery/img-3.png" alt>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 mb-24 mb-lg-0">
-                        <div class="img-block br-20 shadow">
-                            <img src="front/img/gallery/img-4.png" alt>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 mb-24 mb-lg-0">
-                        <div class="img-block br-20 shadow">
-                            <img src="front/img/gallery/img-5.png" alt>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-12 mb-0">
-                        <div class="img-block br-20 shadow">
-                            <img src="front/img/gallery/img-6.png" alt>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
         </section>

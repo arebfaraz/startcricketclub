@@ -58,7 +58,7 @@ header {
 }
 
 header.fixed-top {
-    background: rgba(13, 136, 136, 0.75);
+    background: rgba(0, 0, 0, 0.75);
     transition: all 0.3s ease-in-out 0s;
     animation: 0.3s slidein;
     padding-left: 60px;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\MembershipConfirmation;
 use App\Mail\MembershipMail;
+use App\Models\Gallery;
 use App\Models\MatchResult;
 use App\Models\Player;
 use App\Models\Slider;
@@ -23,6 +24,7 @@ class HomeController extends Controller
         $data['players'] = Player::where('active', 'Y')->where('is_highlight', 'Y')->take(8)->get();
         $data['slider'] = Slider::latest()->first();
         $data['results'] = MatchResult::latest()->take('6')->get();
+        $data['galleries'] = Gallery::latest()->take('6')->get();
         // Get the current date and time
         $now = Carbon::now();
 
@@ -82,6 +84,13 @@ class HomeController extends Controller
         $results = MatchResult::latest()->paginate(6);
 
         return view('front.match-result', compact('results'));
+    }
+
+    public function galleries()
+    {
+        $galleries = Gallery::latest()->paginate(6);
+
+        return view('front.gallery', compact('galleries'));
     }
 
     public function playerDetails($slug)
@@ -144,8 +153,7 @@ class HomeController extends Controller
 
         Player::create($validatedData);
 
-        // Mail::to('nirmaljit1983@gmail.com')->send(new MembershipMail($validatedData));
-        Mail::to('mofaisal739@gmail.com')->send(new MembershipMail($validatedData));
+        Mail::to(env('MAIL_TO_ADDRESS'))->send(new MembershipMail($validatedData));
         Mail::to($request->email)->send(new MembershipConfirmation($validatedData));
 
         return redirect()->route('home')->with('success', 'Thank you for contacting us! We will get back soon.');

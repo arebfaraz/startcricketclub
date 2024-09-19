@@ -66,7 +66,12 @@
                         <p>Slider</p>
                     </a>
                 </li>
-
+                <li class="nav-item {{ Request::routeIs('gallery.*') ? 'active' : '' }}">
+                    <a href="{{ route('gallery.index') }}">
+                        <i class="fas fa-images"></i>
+                        <p>Gallery</p>
+                    </a>
+                </li>
 
 
             </ul>

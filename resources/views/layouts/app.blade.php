@@ -130,6 +130,7 @@
                     $('#navbar_top_small').addClass('fixed-top');
                     $('#navbar-logo').addClass('d-none');
                     $('#navbar-right').addClass('d-none');
+                    $('.navbar-nav').addClass('scroll');
                     // $('#mynavbar div').removeClass('col-lg-8');
 
                     // Add padding top to show content behind the navbar
@@ -140,6 +141,8 @@
                     $('#navbar_top_small').removeClass('fixed-top');
                     $('#navbar-logo').removeClass('d-none');
                     $('#navbar-right').removeClass('d-none');
+                    $('.navbar-nav').removeClass('scroll');
+
                     // $('#mynavbar div').addClass('col-lg-8');
 
                     // Remove padding top from the body
@@ -148,11 +151,6 @@
             });
         });
     </script>
-
-
-
-
-
 
     @stack('script')
 

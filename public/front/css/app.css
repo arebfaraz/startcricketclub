@@ -1817,6 +1817,9 @@ header nav .left-nav .navbar-nav .menu-item a.active::before {
 header nav .left-nav .navbar-nav .menu-item a:hover {
     color: #000;
 }
+header nav .left-nav .navbar-nav.scroll .menu-item a:hover {
+    color: #0d8888;
+}
 header nav .left-nav .navbar-nav .has-children {
     position: relative;
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\MatchResultController;
@@ -52,7 +53,7 @@ Route::get('/upcoming-matches', [ControllersHomeController::class, 'upcomingMatc
 Route::get('/match-results', [ControllersHomeController::class, 'matchResults'])->name('matchResults');
 Route::get('/player/{slug}', [ControllersHomeController::class, 'playerDetails'])->name('playerDetails');
 Route::post('/membership-store', [ControllersHomeController::class, 'membershipStore'])->name('membershipStore');
-Route::get('/update-captcha', [ControllersHomeController::class, 'updateImage']);
+Route::get('/galleries', [ControllersHomeController::class, 'galleries'])->name('galleries');
 
 Route::get('/admin', function () {
     return redirect('admin/login');
@@ -75,6 +76,7 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('match-result', MatchResultController::class);
     Route::resource('membership', MembershipController::class);
     Route::resource('player-stats', PlayerStatController::class);
+    Route::resource('gallery', GalleryController::class);
     Route::post('payment-status', [MembershipController::class, 'paymentStatus'])->name('paymentStatus');
     Route::post('team-assign', [MembershipController::class, 'teamAssign'])->name('teamAssign');
 });

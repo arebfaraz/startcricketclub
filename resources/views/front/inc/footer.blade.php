@@ -2,7 +2,9 @@
     <div class="newslatter p-40 bg-green">
         <div class="container">
             <div class="content">
-                <h4 class="color-white">Subscribe to our Newsletter!</h4>
+                <a href="https://www.youtube.com/@starcricketclub_cambodia" target="_blank">
+                    <h4 class="color-white">Subscribe to our YouTube Channel</h4>
+                </a>
                 <form action="#">
                     <div class="search">
                         <input name="Email" placeholder="Your Email" type="text">
