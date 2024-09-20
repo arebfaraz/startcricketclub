@@ -18,9 +18,13 @@
                                     class="{{ Request::routeIs('about') ? 'active' : '' }}">ABOUT US
                                 </a>
                             </li>
-                            <li class="menu-item"><a href="{{ route('galleries') }}">GALLERY</a></li>
-                            <li class="menu-item"><a href="{{ route('upcomingMatches') }}">Match Schedule</a></li>
-                            <li class="menu-item"><a href="{{ route('contact') }}">CONTACT US</a></li>
+                            <li class="menu-item"><a href="{{ route('galleries') }}"
+                                    class="{{ Request::routeIs('galleries') ? 'active' : '' }}">GALLERY</a></li>
+                            <li class="menu-item"><a href="{{ route('upcomingMatches') }}"
+                                    class="{{ Request::routeIs('upcomingMatches') ? 'active' : '' }}">Match Schedule</a>
+                            </li>
+                            <li class="menu-item"><a href="{{ route('contact') }}"
+                                    class="{{ Request::routeIs('contact') ? 'active' : '' }}">CONTACT US</a></li>
                         </ul>
                     </div>
                 </div>
@@ -46,11 +50,15 @@
         </div>
         <nav class="mobile-navar d-xl-none">
             <ul>
-                <li><a href="{{ route('home') }}" class="active">Home</a></li>
-                <li><a href="{{ route('about') }}">ABOUT US</a></li>
-                <li><a href="{{ route('galleries') }}">Gallery</a></li>
-                <li><a href="{{ route('upcomingMatches') }}">Match Schedule</a></li>
-                <li><a href="{{ route('contact') }}">CONTACT US</a></li>
+                <li><a href="{{ route('home') }}" class="{{ Request::routeIs('home') ? 'active' : '' }}">Home</a></li>
+                <li><a href="{{ route('about') }}" class="{{ Request::routeIs('about') ? 'active' : '' }}">ABOUT
+                        US</a></li>
+                <li><a href="{{ route('galleries') }}"
+                        class="{{ Request::routeIs('galleries') ? 'active' : '' }}">Gallery</a></li>
+                <li><a href="{{ route('upcomingMatches') }}"
+                        class="{{ Request::routeIs('upcomingMatches') ? 'active' : '' }}">Match Schedule</a></li>
+                <li><a href="{{ route('contact') }}" class="{{ Request::routeIs('contact') ? 'active' : '' }}">CONTACT
+                        US</a></li>
             </ul>
         </nav>
     </div>

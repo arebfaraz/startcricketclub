@@ -367,7 +367,7 @@
                             colleges, and local levels to the international stage.
                         </p>
                     </div>
-                    <a href="#" class="cus-btn primary">See All
+                    <a href="{{ route('galleries') }}" class="cus-btn primary">See All
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                             fill="none">
                             <g clip-path="url(#clip0_925_430)">
