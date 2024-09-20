@@ -65,29 +65,30 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-xl-4">
-                        <div class="row">
-                            <div class="col-xl-12 col-lg-6">
-                                <div class="popular mb-48">
-                                    <h4 class="light-black mb-32">Popular Articles</h4>
-                                    @foreach ($popular_blogs as $blog)
-                                        <a href="{{ route('blog', $blog->slug) }}" class="articles mb-16">
-                                            <img src="{{ asset('storage/blog_images/' . $blog->image) }}" alt=""
-                                                width="94" height="86">
-                                            <div class="text">
-                                                <p class="dark-gray mb-8">
-                                                    {{ \Carbon\Carbon::parse($blog->date)->format('d M, Y') }}</p>
-                                                <h5 class="light-black">
-                                                    {{ strlen($blog->title) > 60 ? substr($blog->title, 0, 60) . '...' : $blog->title }}
-                                                </h5>
-                                            </div>
-                                        </a>
-                                    @endforeach
+                    @if (count($popular_blogs) > 0)
+                        <div class="col-xl-4">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-6">
+                                    <div class="popular mb-48">
+                                        <h4 class="light-black mb-32">Popular Articles</h4>
+                                        @foreach ($popular_blogs as $blog)
+                                            <a href="{{ route('blog', $blog->slug) }}" class="articles mb-16">
+                                                <img src="{{ asset('storage/blog_images/' . $blog->image) }}"
+                                                    alt="" width="94" height="86">
+                                                <div class="text">
+                                                    <p class="dark-gray mb-8">
+                                                        {{ \Carbon\Carbon::parse($blog->date)->format('d M, Y') }}</p>
+                                                    <h5 class="light-black">
+                                                        {{ strlen($blog->title) > 60 ? substr($blog->title, 0, 60) . '...' : $blog->title }}
+                                                    </h5>
+                                                </div>
+                                            </a>
+                                        @endforeach
 
+                                    </div>
                                 </div>
-                            </div>
 
-                            {{-- <div class="col-xl-12 col-lg-6">
+                                {{-- <div class="col-xl-12 col-lg-6">
                                 <div class="instagram mb-48">
                                     <h4 class="light-black mb-32">Instagram Stories</h4>
                                     <div class="row mb-16">
@@ -152,13 +153,15 @@
                                 </div>
                             </div> --}}
 
+                            </div>
+
+
+
+
+
                         </div>
+                    @endif
 
-
-
-
-
-                    </div>
                 </div>
             </div>
         </section>

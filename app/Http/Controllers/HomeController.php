@@ -116,10 +116,17 @@ class HomeController extends Controller
         return view('front.blogs', compact('blogs'));
     }
 
-    public function blogDetail($slug)
+    public function blogDetail(Request $request, $slug)
     {
         $blog = Blog::where('slug', $slug)->firstOrFail();
         if ($blog) {
+            $sessionKey = 'blog_viewed_' . $blog->id;
+
+            if (!$request->session()->has($sessionKey)) {
+                // Increment view count and store in session
+                $blog->increment('view_count');
+                $request->session()->put($sessionKey, true);
+            }
             $data['next_blog'] = Blog::where('type', '1')->where('date', '>', $blog->date)->first();
             $data['previous_blog'] = Blog::where('type', '1')->where('date', '<', $blog->date)->first();
             $data['popular_blogs'] = Blog::orderBy('date', 'desc')->where('type', '1')->whereNot('id', $blog->id)->take(3)->get();
