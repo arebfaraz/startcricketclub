@@ -86,6 +86,7 @@ class TeamController extends Controller
         ]);
 
         $team = Team::find($id);
+        $validatedData['logo'] = $team->logo;
 
         if ($request->hasFile('logo')) {
             if ($team->logo && file_exists('storage/team_logos/' . $team->logo)) {

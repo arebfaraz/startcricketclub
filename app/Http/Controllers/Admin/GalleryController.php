@@ -75,6 +75,7 @@ class GalleryController extends Controller
     public function update(Request $request, string $id)
     {
         $gallery = Gallery::find($id);
+        $validatedData['image'] = $gallery->image;
 
         if ($request->hasFile('gallery')) {
             if ($gallery->image && file_exists('storage/galleries/' . $gallery->image)) {

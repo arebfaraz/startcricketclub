@@ -38,7 +38,8 @@ class ContactMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'email.contact',
+            view: 'emails.contact',
+            with: ['data' => $this->data],
         );
     }
 

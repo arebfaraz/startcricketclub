@@ -28,7 +28,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="members-datatables" class="display table table-striped table-hover">
+                        <table id="basic-datatables" class="display table table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>Registration Date</th>
@@ -265,14 +265,6 @@
                     $(".date_err").text('');
 
                 }
-            });
-        });
-
-        $(document).ready(function() {
-            $('#members-datatables').DataTable({
-                order: [
-                    [0, 'desc']
-                ], // Orders the first column (index 0) in descending order
             });
         });
     </script>

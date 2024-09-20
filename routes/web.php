@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
@@ -54,6 +55,10 @@ Route::get('/match-results', [ControllersHomeController::class, 'matchResults'])
 Route::get('/player/{slug}', [ControllersHomeController::class, 'playerDetails'])->name('playerDetails');
 Route::post('/membership-store', [ControllersHomeController::class, 'membershipStore'])->name('membershipStore');
 Route::get('/galleries', [ControllersHomeController::class, 'galleries'])->name('galleries');
+Route::get('/blogs', [ControllersHomeController::class, 'blogs'])->name('blogs');
+Route::get('/contact', [ControllersHomeController::class, 'contact'])->name('contact');
+Route::post('/contact', [ControllersHomeController::class, 'contactUs'])->name('contactUs');
+Route::get('/blog/{slug}', [ControllersHomeController::class, 'blogDetail'])->name('blog');
 
 Route::get('/admin', function () {
     return redirect('admin/login');
@@ -77,6 +82,7 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('membership', MembershipController::class);
     Route::resource('player-stats', PlayerStatController::class);
     Route::resource('gallery', GalleryController::class);
+    Route::resource('blog', BlogController::class);
     Route::post('payment-status', [MembershipController::class, 'paymentStatus'])->name('paymentStatus');
     Route::post('team-assign', [MembershipController::class, 'teamAssign'])->name('teamAssign');
 });

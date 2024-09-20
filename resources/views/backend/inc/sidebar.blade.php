@@ -72,7 +72,12 @@
                         <p>Gallery</p>
                     </a>
                 </li>
-
+                <li class="nav-item {{ Request::routeIs('blog.*') ? 'active' : '' }}">
+                    <a href="{{ route('blog.index') }}">
+                        <i class="fab fa-blogger-b"></i>
+                        <p>Blog</p>
+                    </a>
+                </li>
 
             </ul>
         </div>

@@ -167,6 +167,7 @@ class PlayerController extends Controller
         ]);
 
         $player = Player::find($id);
+        $validatedData['image'] = $player->image;
 
         if ($request->hasFile('image')) {
             if ($player->image && file_exists('storage/player_images/' . $player->image)) {

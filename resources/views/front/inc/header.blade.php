@@ -20,7 +20,7 @@
                             </li>
                             <li class="menu-item"><a href="{{ route('galleries') }}">GALLERY</a></li>
                             <li class="menu-item"><a href="{{ route('upcomingMatches') }}">Match Schedule</a></li>
-                            <li class="menu-item"><a href="#">CONTACT US</a></li>
+                            <li class="menu-item"><a href="{{ route('contact') }}">CONTACT US</a></li>
                         </ul>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                 <li><a href="{{ route('about') }}">ABOUT US</a></li>
                 <li><a href="{{ route('galleries') }}">Gallery</a></li>
                 <li><a href="{{ route('upcomingMatches') }}">Match Schedule</a></li>
-                <li><a href="#">CONTACT US</a></li>
+                <li><a href="{{ route('contact') }}">CONTACT US</a></li>
             </ul>
         </nav>
     </div>

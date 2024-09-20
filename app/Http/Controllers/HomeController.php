@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMail;
 use App\Mail\MembershipConfirmation;
 use App\Mail\MembershipMail;
+use App\Models\Blog;
 use App\Models\Gallery;
 use App\Models\MatchResult;
 use App\Models\Player;
@@ -25,6 +27,7 @@ class HomeController extends Controller
         $data['slider'] = Slider::latest()->first();
         $data['results'] = MatchResult::latest()->take('6')->get();
         $data['galleries'] = Gallery::latest()->take('6')->get();
+        $data['blogs'] = Blog::orderBy('date', 'desc')->where('type', '1')->take('4')->get();
         // Get the current date and time
         $now = Carbon::now();
 
@@ -88,8 +91,7 @@ class HomeController extends Controller
 
     public function galleries()
     {
-        $galleries = Gallery::latest()->paginate(6);
-
+        $galleries = Gallery::latest()->paginate(9);
         return view('front.gallery', compact('galleries'));
     }
 
@@ -102,6 +104,52 @@ class HomeController extends Controller
         $player = Player::whereRaw('LOWER(REPLACE(name, "-", " ")) = ?', [$normalizedSlug])->firstOrFail();
 
         return view('front.player-detail', compact('player'));
+    }
+
+    public function blogs(Request $request)
+    {
+        $blogs = Blog::orderBy('date', 'desc')->where('type', '1');
+        if ($request->search) {
+            $blogs->where('title', 'LIKE', '%' . $request->search . '%');
+        }
+        $blogs = $blogs->paginate(15);
+        return view('front.blogs', compact('blogs'));
+    }
+
+    public function blogDetail($slug)
+    {
+        $blog = Blog::where('slug', $slug)->firstOrFail();
+        if ($blog) {
+            $data['next_blog'] = Blog::where('type', '1')->where('date', '>', $blog->date)->first();
+            $data['previous_blog'] = Blog::where('type', '1')->where('date', '<', $blog->date)->first();
+            $data['popular_blogs'] = Blog::orderBy('date', 'desc')->where('type', '1')->whereNot('id', $blog->id)->take(3)->get();
+            $data['blog'] = $blog;
+        }
+        return view('front.blog-detail', $data);
+    }
+
+    public function contact()
+    {
+        return view('front.contact');
+    }
+
+    public function contactUs(Request $request)
+    {
+        $validatedData = $request->validate(
+            [
+                'name' => 'required',
+                'email' => 'required|email',
+                'subject' => 'required',
+                'comments' => 'required',
+                'g-recaptcha-response' => 'required|captcha',
+            ],
+            [
+                'g-recaptcha-response.required' => 'Captcha is required',
+            ]
+        );
+        // Mail::to('nirmaljit1983@gmail.com')->send(new ContactMail($validatedData));
+        Mail::to('mofaisal739@gmail.com')->send(new ContactMail($validatedData));
+        return redirect()->route('home')->with('success', 'Thank you for contacting us! We will get back soon.');
     }
 
     public function membershipStore(Request $request)
@@ -153,7 +201,8 @@ class HomeController extends Controller
 
         Player::create($validatedData);
 
-        Mail::to(env('MAIL_TO_ADDRESS'))->send(new MembershipMail($validatedData));
+        Mail::to('mofaisal739@gmail.com')->send(new MembershipMail($validatedData));
+        // Mail::to('nirmaljit1983@gmail.com')->send(new MembershipMail($validatedData));
         Mail::to($request->email)->send(new MembershipConfirmation($validatedData));
 
         return redirect()->route('home')->with('success', 'Thank you for contacting us! We will get back soon.');

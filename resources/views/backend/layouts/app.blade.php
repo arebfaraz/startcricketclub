@@ -86,6 +86,8 @@
 
     <!-- Sweet Alert -->
     <script src="{{ asset('backend/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
+    <!-- Summernote -->
+    <script src="{{ asset('backend/js/plugin/summernote/summernote-lite.min.js') }}"></script>
 
     <!-- Kaiadmin JS -->
     <script src="{{ asset('backend/js/kaiadmin.min.js') }}"></script>
@@ -150,8 +152,7 @@
     <script>
         $(document).ready(function() {
             $('#basic-datatables').DataTable({
-                deferRender: true, // Defers rendering of rows until they are visible
-                responsive: true // Ensures responsiveness
+                "ordering": false
             });
         });
     </script>
